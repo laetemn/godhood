@@ -1,0 +1,73 @@
+<project name="duels-wireless" default="run" basedir=".">
+
+    <property file="..\..\global\build\global.properties"/>
+    <property file=".\build.properties"/>
+
+    <property name="wtk.home" value="c:\bin\WTK104"/>
+
+    <taskdef name="wtkjad" classname="de.pleumann.antenna.WtkJad"/>
+    <taskdef name="wtkbuild" classname="de.pleumann.antenna.WtkBuild"/>
+    <taskdef name="wtkpackage" classname="de.pleumann.antenna.WtkPackage"/>
+    <taskdef name="wtkrun" classname="de.pleumann.antenna.WtkRun"/>
+
+    <target name="init">
+        <tstamp/>
+        <mkdir dir="${work.dist}"/>
+        <mkdir dir="${work.classes}"/>
+    </target>
+
+    <target name="compile-java" depends="init">
+        <wtkbuild destdir="${work.classes}" debug="${debug}" preverify="true" verbose="true" optimize="${optimize}">
+            <src location="${src.java}"/>
+            <src location="${game.src.java}"/>
+            <classpath>
+                <pathelement location="..\..\global\lib\midpapi.zip"/>
+            </classpath>
+        </wtkbuild>
+    </target>
+
+    <target name="make-config">
+        <ant dir="..\..\tools\build" antfile="..\..\tools\build\build.xml"
+            target="run-room-converter" inheritAll="false"/>
+        <ant dir="..\..\tools\build" antfile="..\..\tools\build\build.xml"
+            target="run-image-converter" inheritAll="false"/>
+    </target>
+
+    <target name="run" depends="deploy">
+        <wtkrun jadfile="${wireless.jad}"/>
+    </target>
+
+    <target name="deploy" depends="compile,make-config">
+        <wtkjad jadfile="${wireless.jad}" name="Godhood - The Eye of Ascension" vendor="Zonski" version="0.1">
+            <midlet name="Godhood - The Eye of Ascension"
+                icon="/images/icon.png"
+                class="com.zonski.godhood.duels.wireless.DuelsMIDlet"/>
+            <attribute name="Game" value="Godhood - The Eye of Ascension"/>
+            <attribute name="Q" value="Begin Quest"/>
+            <attribute name="Save" value="Load Saved Game"/>
+        </wtkjad>
+        <wtkpackage jarfile="${wireless.jar}" jadfile="${wireless.jad}" obfuscate="off">
+            <fileset dir="..\..\res" includes="**/wad.png,**/icon.png,**/*.room,**/*.map"
+                excludes="**\.xvpics\**"/>
+            <fileset dir="${work.classes}"/>
+        </wtkpackage>
+    </target>
+
+    <target name="compile" depends="compile-java"/>
+
+    <target name="motorola-test" depends="deploy">
+       <copy dir="${wireless.work}" todir="${symbian.dist}"/>
+    </target>
+
+    <target name="wtk-test">
+        <copy todir="${wtk.dist.src}">
+            <fileset dir="${src.java}"/>
+            <fileset dir="${game.src.java}"/>
+        </copy>
+        <copy todir="${wtk.dist.res}">
+            <fileset dir="..\..\res" includes="**/wad.png,**/icon.png,**/*.room,**/*.map"
+                excludes="**\.xvpics\**"/>
+        </copy>
+    </target>
+
+</project>

@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Room width="15" height="15" name="the crypt">
+    <Welcome>There's a creak and a chittering sound, you are almost certain you are not alone</Welcome>
+    <Lose>A fresh corpse now resides in the crypt, yours</Lose>
+    <Tiles>CCCCCC   CCCCCC
+CCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+ CCCCCCCCCCCCCC
+ CCCCCCCCCCCCCC
+ CCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+CCCCCC   CCCCCC
+    </Tiles>
+    <Obstacles>BBBBBB   BBBBBB
+B    BBBBB    B
+B             B
+B    B   B    B
+B BBBB   BBBBBB
+B    B        B
+BBBB BBBBB
+ B   B   B BB B
+ B   BB BB B  B
+ B   B   B B  B
+BBB BB   B BBBB
+B    B   B    B
+B             B
+B    BBBBB    B
+BBBBBB   BBBBBB
+    </Obstacles>
+    <Friends />
+
+    <Actions>
+        <Heal action="A golden glow surrounds the {0}"
+            amount="100" cost="0"/>
+    </Actions>
+
+    <Prototype name="poison gas" entity-type-id="81" entity-type="phenomina" health="0"
+        collision-effect="none" level="6" armour-class="0" attack-bonus="0" speed="4" frequency="50">
+        <Categories>
+            <Category type="elemental" />
+        </Categories>
+        <Actions>
+            <Attack name="Envelop" action="envelops" range="0"
+                number-of-sides="4" number-of-dice="1" attack-bonus="1"
+                percent-success="0" end-turn="true" radius="0" cost="0"
+                type="implicit" always-hits="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="elemental" />
+                </Categories>
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="bat" entity-type-id="97" entity-type="monster" health="20"
+        collision-effect="monster" level="1" armour-class="4" attack-bonus="0" speed="20" frequency="50">
+        <Categories>
+            <Category type="animal" />
+            <Category type="flying" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0">
+                <Filter />
+            </Die>
+            <EndTurn name="End turn" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Bite" action="bites" range="1" number-of-sides="4" number-of-dice="1" attack-bonus="0" end-turn="true" radius="0" cost="4" type="hand-to-hand">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="giant spider" entity-type-id="38" entity-type="monster" health="25"
+        collision-effect="monster" level="3" armour-class="5" attack-bonus="5" speed="8" frequency="60">
+        <Categories>
+            <Category type="animal" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Bite" action="bites" range="1" number-of-sides="4" number-of-dice="1"
+                attack-bonus="0" percent-success="4" end-turn="true" radius="0" cost="4" type="hand-to-hand">
+                <PrerequisiteCategories />
+                <Categories />
+                <Confers>
+                    <Die action="The {0} {1}" name="is fatally poisoned" cost="0">
+                        <Filter>
+                            <Category type="not" />
+                            <Category type="undead" />
+                        </Filter>
+                    </Die>
+                </Confers>
+            </Attack>
+            <Attack name="Web" action="fires webs at" range="3" number-of-sides="0" number-of-dice="0"
+                attack-bonus="0" percent-success="80" end-turn="true" radius="0" cost="8" type="thrown">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="elemental" />
+                </Categories>
+                <Confers>
+                    <Dazed name="stuck" action="The {0} is {1}" cost="30">
+                        <Filter />
+                    </Dazed>
+                </Confers>
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="key" entity-type-id="61"
+        entity-type="item"
+        health="0"
+        collision-effect="none"
+        level="0"
+        armour-class="0"
+        attack-bonus="0"
+        speed="0"
+        frequency="0">
+        <Categories />
+        <Actions>
+            <Attack name="Unlock" action="unlocks" range="1" number-of-sides="0"
+                number-of-dice="0" attack-bonus="0" create="0" percent-success="100"
+                good="true" end-turn="false" radius="0" cost="3" type="hand-to-hand">
+                <PrerequisiteCategories>
+                    <Category type="humanoid" />
+                    <Category type="intelligent"/>
+                </PrerequisiteCategories>
+                <Confers>
+                    <Unlock action="The {0} is unlocked" cost="0"/>
+                </Confers>
+            </Attack>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2"/>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="lightning" entity-type-id="75" entity-type="phenomina"
+        health="0" collision-effect="none" level="4" armour-class="0" attack-bonus="0"
+        speed="4" frequency="100">
+        <Categories>
+            <Category type="elemental" />
+        </Categories>
+        <Actions>
+            <Attack name="-" action="blasts" range="0" number-of-sides="8" number-of-dice="1"
+                attack-bonus="0" create="0" percent-success="0" end-turn="true" radius="0"
+                cost="4" type="implicit" always-hits="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="elemental" />
+                </Categories>
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="lightning mace" entity-type-id="62"
+        entity-type="item"
+        health="0"
+        collision-effect="none"
+        level="0"
+        armour-class="0"
+        attack-bonus="0"
+        speed="0"
+        frequency="0">
+        <Categories />
+        <Actions>
+            <Attack name="Bash" action="bashes" range="1" number-of-sides="1"
+                number-of-dice="6" attack-bonus="3" create="75" percent-success="100"
+                end-turn="true" radius="0" cost="3" type="hand-to-hand">
+                <PrerequisiteCategories>
+                    <Category type="humanoid" />
+                </PrerequisiteCategories>
+            </Attack>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2"/>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="potion of hate" entity-type-id="64" entity-type="item" health="0" collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories />
+        <Actions>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2"/>
+            <Attack name="Drink" action="The {1} quaffs the {2}" range="1" number-of-sides="0"
+                number-of-dice="0" attack-bonus="0" create="0"  percent-success="100"
+                end-turn="false" radius="0" cost="3" type="hand-to-hand" default-attack="false"
+                consume="true">
+                <PrerequisiteCategories>
+                    <Category type="intelligent" />
+                    <Category type="humanoid" />
+                </PrerequisiteCategories>
+                <Confers>
+                    <Convert action="The {0} begins to foam at the mouth" cost="0" convert-to-side="11"/>
+                </Confers>
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="zombi" entity-type-id="48" entity-type="monster" health="40" collision-effect="monster"
+        armour-class="10" attack-bonus="1" speed="8" frequency="70" level="3">
+        <Categories>
+            <Category type="undead" />
+            <Category type="humanoid" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0" create="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" action="" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Bite" action="bites" range="1" number-of-sides="4" number-of-dice="1" attack-bonus="0" create="0" percent-success="5" end-turn="true" radius="0" cost="2" type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="undead" />
+                </Categories>
+                <Confers>
+                    <Polymorph action="The {0} looks decidedly ill" cost="0" polymorph-to="48">
+                        <Filter>
+                            <Category type="not"/>
+                            <Category type="undead"/>
+                        </Filter>
+                    </Polymorph>
+                </Confers>
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="ghost" entity-type-id="29" entity-type="monster" health="30"
+        collision-effect="none" level="5" armour-class="0" attack-bonus="0" speed="10" frequency="55">
+        <Categories>
+            <Category type="undead" />
+            <Category type="humanoid" />
+            <Category type="flying"/>
+        </Categories>
+        <Actions>
+            <Attack name="Claw" action="claws" range="1" number-of-sides="4" number-of-dice="1" attack-bonus="0" percent-success="0" end-turn="true" radius="0" cost="4" type="hand-to-hand">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="undead" />
+                </Categories>
+            </Attack>
+            <Attack name="Possess" action="possesses" range="0"
+                number-of-sides="0" number-of-dice="0" attack-bonus="0" percent-success="90"
+                end-turn="true" radius="0" cost="10" type="hand-to-hand" kill-parent="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="undead" />
+                </Categories>
+                <Confers>
+                    <Convert name="possessed" action="The {0} is {1}" cost="0" convert-to-side="0">
+                        <Filter>
+                            <Category type="not" />
+                            <Category type="undead" />
+                        </Filter>
+                    </Convert>
+                </Confers>
+            </Attack>
+            <Move cost="2" />
+            <Die name="dies" action="The {0} {1}" cost="0" create="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" action="" cost="0">
+                <Filter />
+            </EndTurn>
+        </Actions>
+    </Prototype>
+    <Prototype name="mummy" entity-type-id="95" entity-type="monster" health="60"
+        collision-effect="monster" level="10" armour-class="5" attack-bonus="2" speed="12" frequency="50">
+        <Categories>
+            <Category type="undead" />
+            <Category type="humanoid" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Claw" action="claws" range="1" number-of-sides="4" number-of-dice="2" attack-bonus="0" percent-success="8" end-turn="true" radius="0" cost="2" type="hand-to-hand">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="undead" />
+                </Categories>
+                <Confers>
+                    <!-- turns him into a mummy -->
+                    <Polymorph cost="0" polymorph-to="95" action="The {0} looks decidedly ill" >
+                        <Filter>
+                            <Category type="not" />
+                            <Category type="undead" />
+                        </Filter>
+                    </Polymorph>
+                </Confers>
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="golem" entity-type-id="49" entity-type="monster" health="30" collision-effect="monster" level="3" armour-class="0" attack-bonus="5" speed="11" frequency="54">
+        <Categories>
+            <Category type="humanoid" />
+            <Category type="magic" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Breath Poison Gas" action="breaths poisonous gas at" range="2"
+                number-of-sides="0" number-of-dice="0" attack-bonus="0" create="81"
+                percent-success="100" end-turn="true" radius="0" cost="7" type="hand-to-hand">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="elemental" />
+                </Categories>
+            </Attack>
+            <Attack name="Punch" action="punches" range="1" number-of-sides="6" number-of-dice="1" attack-bonus="0" percent-success="0" end-turn="true" radius="0" cost="5" type="hand-to-hand">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="magic" />
+                </Categories>
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="portal" entity-type-id="86"
+        entity-type="inherit"
+        health="0"
+        collision-effect="none"
+        level="0"
+        armour-class="0"
+        attack-bonus="0"
+        speed="0"
+        frequency="0">
+        <Categories />
+    </Prototype>
+
+    <Prototype name="ladder" entity-type-id="82" entity-type="inherit" health="0" collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories />
+    </Prototype>
+    <Prototype name="arch" entity-type-id="84" entity-type="inherit" health="0" collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories />
+    </Prototype>
+    <Prototype name="door" entity-type-id="90" entity-type="impassable" collision-effect="bounce" health="10">
+        <Categories />
+    </Prototype>
+    <Prototype name="door" entity-type-id="91" entity-type="impassable" collision-effect="bounce" health="10">
+        <Categories />
+    </Prototype>
+    <Entities>
+
+        <!-- mummy -->
+        <Entity entity-type-id="95" x="3" y="8" side="3">
+            <Items>
+                <Item entity-type-id="62"/>
+            </Items>
+        </Entity>
+
+        <!-- ghosts -->
+        <Entity entity-type-id="29" x="2" y="11" side="3">
+            <Items>
+                <Item entity-type-id="61"/>
+            </Items>
+        </Entity>
+        <Entity entity-type-id="29" x="4" y="11" side="3"/>
+
+        <!-- defender zombis -->
+        <Entity entity-type-id="48" x="2" y="7" side="3"/>
+        <Entity entity-type-id="48" x="4" y="7" side="3"/>
+        <Entity entity-type-id="48" x="2" y="9" side="3"/>
+        <Entity entity-type-id="48" x="4" y="9" side="3"/>
+
+        <!-- golems -->
+        <Entity entity-type-id="49" x="12" y="2" side="3">
+            <Items>
+                <Item entity-type-id="64"/>
+            </Items>
+        </Entity>
+        <!-- zombies -->
+        <Entity entity-type-id="48" x="10" y="1" side="3"/>
+        <Entity entity-type-id="48" x="13" y="3" side="3"/>
+        <Entity entity-type-id="48" x="13" y="2" side="3"/>
+        <Entity entity-type-id="48" x="10" y="3" side="3"/>
+
+        <!-- ladder -->
+        <Entity entity-type-id="82" x="7" y="7" side="0">
+            <Actions>
+                <Exit name="Ascend" action="The {0} climbs up the ladder" cost="4" exit-name="res:///rooms/graveyard.room">
+                    <Filter />
+                </Exit>
+            </Actions>
+        </Entity>
+
+        <!-- arch -->
+        <Entity entity-type-id="84" x="14" y="6" side="0">
+            <Actions>
+                <Exit name="Enter" action="The {0} enters the archway" cost="4" exit-name="res:///rooms/goblinking.room">
+                    <Filter />
+                </Exit>
+            </Actions>
+        </Entity>
+
+        <!-- portal -->
+        <Entity entity-type-id="86" x="2" y="2" side="0">
+            <Actions>
+                <Exit name="Enter" action="The {0} enters the portal" cost="4" exit-name="res:///rooms/guardian.room">
+                    <Filter />
+                </Exit>
+            </Actions>
+        </Entity>
+
+        <!-- spiders -->
+        <Entity entity-type-id="38" x="11" y="12" side="4"/>
+        <Entity entity-type-id="38" x="13" y="11" side="4"/>
+        <Entity entity-type-id="38" x="13" y="9" side="4"/>
+        <Entity entity-type-id="38" x="10" y="7" side="4"/>
+        <!-- bat -->
+        <Entity entity-type-id="97" x="13" y="5" side="4"/>
+        <Entity entity-type-id="97" x="12" y="6" side="4"/>
+
+        <!-- doors -->
+        <Entity entity-type-id="90" x="9" y="2" side="0"/>
+        <Entity entity-type-id="90" x="9" y="12" side="0"/>
+        <Entity entity-type-id="91" x="4" y="6" side="0"/>
+        <Entity entity-type-id="91" x="1" y="4" side="0"/>
+        <Entity entity-type-id="91" x="3" y="10" side="0"/>
+    </Entities>
+</Room>
+

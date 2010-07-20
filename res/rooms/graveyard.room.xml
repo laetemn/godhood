@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Room width="11" height="11" name="the graveyard">
+    <Welcome>You enter a small graveyard, somewhere in the distance a wolf howls</Welcome>
+    <Lose>You lose, loser</Lose>
+    <Tiles>BBBBBBBBBBB
+BBBBBBBBBBB
+BEEBBBBEEBB
+BBBBBBBBBBB
+B  BBBBEEBB
+BBBBBCCCCCC
+CCCCCCBBBBB
+CDDDCCBBBBB
+CDDDCCB  BB
+CDDDCBBBBBB
+CCCCCCCCCCC
+    </Tiles>
+    <Obstacles>BBBBBBBBBBB
+D   D   EED
+DK  D  K ED
+D   D     D
+D   B  K ED
+D
+BBBBB     D
+B   B     D
+B      K  D
+B   B    ED
+BBBBBBBBBBB
+    </Obstacles>
+    <Friends>
+        <Friend side="2"/>
+    </Friends>
+    <Prototype name="arch" entity-type-id="84" entity-type="inherit" health="0" collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories />
+    </Prototype>
+    <Prototype name="trapdoor" entity-type-id="83" entity-type="inherit" health="0" collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories />
+    </Prototype>
+    <Prototype name="dark tree" entity-type-id="22" entity-type="monster" health="40" collision-effect="monster" level="10" armour-class="-2" attack-bonus="5" speed="3" frequency="100">
+        <Categories>
+            <Category type="elemental" />
+        </Categories>
+        <Actions>
+            <EndTurn name="End turn" action="" cost="0">
+                <Filter />
+            </EndTurn>
+            <Die name="dies" action="The {0} {1}" cost="0" create="0">
+                <Filter />
+            </Die>
+            <Attack name="Bash" action="bashes" range="1" number-of-sides="5" number-of-dice="1" attack-bonus="2" create="0" percent-success="0" end-turn="true" radius="0" cost="3" type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="elemental" />
+                </Categories>
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="seed" entity-type-id="62" entity-type="item" health="0" collision-effect="none">
+        <Actions>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2"/>
+            <Attack name="Plant" action="plants a seed"
+                range="1"
+                number-of-sides="0"
+                number-of-dice="0"
+                attack-bonus="0"
+                create="22"
+                percent-success="100"
+                end-turn="true"
+                radius="0"
+                cost="4"
+                type="hand-to-hand"
+                consume="true"/>
+
+        </Actions>
+    </Prototype>
+    <Prototype name="zombi" entity-type-id="48" entity-type="monster" health="40"
+        collision-effect="monster" armour-class="10" attack-bonus="1" speed="8" frequency="70" level="2">
+        <Categories>
+            <Category type="undead" />
+            <Category type="humanoid" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0" create="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" action="" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Bite" action="bites" range="1" number-of-sides="4" number-of-dice="1" attack-bonus="0" create="0" percent-success="5" end-turn="true" radius="0" cost="2" type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="undead" />
+                </Categories>
+                <Confers>
+                    <Polymorph action="The {0} looks decidedly ill" cost="0" polymorph-to="48">
+                        <Filter>
+                            <Category type="not"/>
+                            <Category type="undead"/>
+                        </Filter>
+                    </Polymorph>
+                </Confers>
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Entities>
+        <Entity name="arch" entity-type-id="84" x="10" y="5" side="0" health="0">
+            <Actions>
+                <Exit name="Enter" action="The {0} leaves" cost="4" exit-name="res:///rooms/topside.room">
+                    <Filter />
+                </Exit>
+            </Actions>
+        </Entity>
+        <Entity name="trapdoor" entity-type-id="83" x="2" y="8" side="0" health="0" boss="false">
+            <Actions>
+                <Exit name="Descend" action="The {0} climbs down the ladder" cost="4" exit-name="res:///rooms/crypt.room">
+                    <Filter />
+                </Exit>
+            </Actions>
+        </Entity>
+        <!-- zombis -->
+        <Entity entity-type-id="48" x="1" y="3" side="3" />
+        <Entity entity-type-id="48" x="1" y="7" side="3" />
+        <Entity entity-type-id="48" x="3" y="8" side="3" />
+        <Entity entity-type-id="48" x="1" y="9" side="3" />
+        <!-- evil trees -->
+        <Entity entity-type-id="22" x="1" y="1" side="3" >
+            <Items>
+                <Item entity-type-id="62" />
+            </Items>
+        </Entity>
+        <Entity entity-type-id="22" x="5" y="4" side="3" />
+        <Entity entity-type-id="22" x="3" y="4" side="3" />
+    </Entities>
+</Room>

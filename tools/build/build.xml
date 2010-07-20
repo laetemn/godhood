@@ -1,0 +1,268 @@
+<project name="tools" default="compile" basedir=".">
+    
+    <property file="..\..\global\build\global.properties"/>
+    <property file=".\build.properties"/>
+
+    <target name="init">
+        <mkdir dir="${work.classes}"/>
+        <mkdir dir="${work.dist}"/>
+    </target>
+
+    <target name="compile" depends="init,compile-dependencies">
+        <javac srcdir="${src.java}" destdir="${work.classes}" debug="${debug}">
+            <classpath>
+                <pathelement location="${game.work.classes}"/>
+                <pathelement location="${server.work.classes}"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="compile-dependencies">
+        <ant antfile="${server.build.dir}/build.xml" dir="${server.build.dir}"
+            inheritAll="false"/>
+    </target>
+
+    <target name="deploy" depends="compile">
+        <jar jarfile="${work.dist}/${tools.jar}">
+            <fileset dir="${game.work.classes}"/>
+            <fileset dir="${server.work.classes}"/>
+            <fileset dir="${work.classes}"/>
+        </jar>
+    </target>
+
+
+    <target name="run-room-converter" depends="deploy">
+        <echo message="topside"/>
+        <java classname="com.zonski.godhood.duels.tools.FileFormatConverter" failonerror="on">
+            <arg value="-d"/>
+            <arg value="${resources.rooms}"/>
+            <arg value="-s"/>
+            <arg value="xml"/>
+            <arg value="topside"/>
+            <classpath>
+                <pathelement location="${work.dist}/${tools.jar}"/>
+                <pathelement location="${jdom.jar}"/>
+                <pathelement location="${xerces.jar}"/>
+                <pathelement location="c:\bin\j2sdk1.4.0\jre\lib\rt.jar"/>
+            </classpath>
+        </java>
+
+        <echo message="crypt"/>
+        <java classname="com.zonski.godhood.duels.tools.FileFormatConverter" failonerror="on">
+            <arg value="-d"/>
+            <arg value="${resources.rooms}"/>
+            <arg value="-s"/>
+            <arg value="xml"/>
+            <arg value="crypt"/>
+            <classpath>
+                <pathelement location="${work.dist}/${tools.jar}"/>
+                <pathelement location="${jdom.jar}"/>
+                <pathelement location="${xerces.jar}"/>
+                <pathelement location="c:\bin\j2sdk1.4.0\jre\lib\rt.jar"/>
+            </classpath>
+        </java>
+
+        <echo message="goblinking"/>
+        <java classname="com.zonski.godhood.duels.tools.FileFormatConverter" failonerror="on">
+            <arg value="-d"/>
+            <arg value="${resources.rooms}"/>
+            <arg value="-s"/>
+            <arg value="xml"/>
+            <arg value="goblinking"/>
+            <classpath>
+                <pathelement location="${work.dist}/${tools.jar}"/>
+                <pathelement location="${jdom.jar}"/>
+                <pathelement location="${xerces.jar}"/>
+                <pathelement location="c:\bin\j2sdk1.4.0\jre\lib\rt.jar"/>
+            </classpath>
+        </java>
+
+        <echo message="graveyard"/>
+        <java classname="com.zonski.godhood.duels.tools.FileFormatConverter" failonerror="on">
+            <arg value="-d"/>
+            <arg value="${resources.rooms}"/>
+            <arg value="-s"/>
+            <arg value="xml"/>
+            <arg value="graveyard"/>
+            <classpath>
+                <pathelement location="${work.dist}/${tools.jar}"/>
+                <pathelement location="${jdom.jar}"/>
+                <pathelement location="${xerces.jar}"/>
+                <pathelement location="c:\bin\j2sdk1.4.0\jre\lib\rt.jar"/>
+            </classpath>
+        </java>
+
+        <echo message="town"/>
+        <java classname="com.zonski.godhood.duels.tools.FileFormatConverter" failonerror="on">
+            <arg value="-d"/>
+            <arg value="${resources.rooms}"/>
+            <arg value="-s"/>
+            <arg value="xml"/>
+            <arg value="town"/>
+            <classpath>
+                <pathelement location="${work.dist}/${tools.jar}"/>
+                <pathelement location="${jdom.jar}"/>
+                <pathelement location="${xerces.jar}"/>
+                <pathelement location="c:\bin\j2sdk1.4.0\jre\lib\rt.jar"/>
+            </classpath>
+        </java>
+
+        <echo message="guardian"/>
+        <java classname="com.zonski.godhood.duels.tools.FileFormatConverter" failonerror="on">
+            <arg value="-d"/>
+            <arg value="${resources.rooms}"/>
+            <arg value="-s"/>
+            <arg value="xml"/>
+            <arg value="guardian"/>
+            <classpath>
+                <pathelement location="${work.dist}/${tools.jar}"/>
+                <pathelement location="${jdom.jar}"/>
+                <pathelement location="${xerces.jar}"/>
+                <pathelement location="c:\bin\j2sdk1.4.0\jre\lib\rt.jar"/>
+            </classpath>
+        </java>
+
+        <echo message="start"/>
+        <java classname="com.zonski.godhood.duels.tools.FileFormatConverter" failonerror="on">
+            <arg value="-d"/>
+            <arg value="${resources.rooms}"/>
+            <arg value="-s"/>
+            <arg value="xml"/>
+            <arg value="start"/>
+            <classpath>
+                <pathelement location="${work.dist}/${tools.jar}"/>
+                <pathelement location="${jdom.jar}"/>
+                <pathelement location="${xerces.jar}"/>
+                <pathelement location="c:\bin\j2sdk1.4.0\jre\lib\rt.jar"/>
+            </classpath>
+        </java>
+
+        <echo message="baromophet"/>
+        <java classname="com.zonski.godhood.duels.tools.FileFormatConverter" failonerror="on">
+            <arg value="-d"/>
+            <arg value="${resources.rooms}"/>
+            <arg value="-s"/>
+            <arg value="xml"/>
+            <arg value="baromophet"/>
+            <classpath>
+                <pathelement location="${work.dist}/${tools.jar}"/>
+                <pathelement location="${jdom.jar}"/>
+                <pathelement location="${xerces.jar}"/>
+                <pathelement location="c:\bin\j2sdk1.4.0\jre\lib\rt.jar"/>
+            </classpath>
+        </java>
+
+    </target>
+
+    <target name="run-image-converter" depends="deploy">
+        <java classname="com.zonski.godhood.duels.tools.MapEncoder">
+            <arg value="${resources.images.map.txt.file}"/>
+            <classpath>
+                <pathelement location="${work.dist}/${tools.jar}"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="test-room-converter" depends="deploy">
+        <copy file="${resources.rooms}\training.room.xml" tofile="${resources.rooms}\training2.room.xml" overwrite="on"/>
+
+
+        <java classname="com.zonski.godhood.duels.tools.FileFormatConverter">
+            <arg value="-d"/>
+            <arg value="${resources.rooms}"/>
+            <arg value="-t"/>
+            <arg value="xml"/>
+            <arg value="training2"/>
+            <classpath>
+                <pathelement location="${work.dist}/${tools.jar}"/>
+                <pathelement location="${jdom.jar}"/>
+                <pathelement location="${xerces.jar}"/>
+                <pathelement location="c:\bin\j2sdk1.4.0\jre\lib\rt.jar"/>
+            </classpath>
+        </java>
+
+
+        <java classname="com.zonski.godhood.duels.tools.FileFormatConverter">
+            <arg value="-d"/>
+            <arg value="${resources.rooms}"/>
+            <arg value="-s"/>
+            <arg value="xml"/>
+            <arg value="training2"/>
+            <classpath>
+                <pathelement location="${work.dist}/${tools.jar}"/>
+                <pathelement location="${jdom.jar}"/>
+                <pathelement location="${xerces.jar}"/>
+                <pathelement location="c:\bin\j2sdk1.4.0\jre\lib\rt.jar"/>
+            </classpath>
+        </java>
+
+
+        <java classname="com.zonski.godhood.duels.tools.FileFormatConverter">
+            <arg value="-d"/>
+            <arg value="${resources.rooms}"/>
+            <arg value="-s"/>
+            <arg value="binary"/>
+            <arg value="training2"/>
+            <classpath>
+                <pathelement location="${work.dist}/${tools.jar}"/>
+                <pathelement location="${jdom.jar}"/>
+                <pathelement location="${xerces.jar}"/>
+                <pathelement location="c:\bin\j2sdk1.4.0\jre\lib\rt.jar"/>
+            </classpath>
+        </java>
+
+        <copy file="${resources.rooms}\training2.room" tofile="${resources.rooms}\training3.room"/>
+
+        <java classname="com.zonski.godhood.duels.tools.FileFormatConverter">
+            <arg value="-d"/>
+            <arg value="${resources.rooms}"/>
+            <arg value="-s"/>
+            <arg value="binary"/>
+            <arg value="-t"/>
+            <arg value="xml"/>
+            <arg value="training3"/>
+            <classpath>
+                <pathelement location="${work.dist}/${tools.jar}"/>
+                <pathelement location="${jdom.jar}"/>
+                <pathelement location="${xerces.jar}"/>
+                <pathelement location="c:\bin\j2sdk1.4.0\jre\lib\rt.jar"/>
+            </classpath>
+        </java>
+
+        <copy file="${resources.rooms}\training3.room" tofile="${resources.rooms}\training.room"/>
+    </target>
+
+    <!-- demos -->
+    <target name="run-demo-room-converter" depends="deploy">
+        <echo message="demo start"/>
+        <java classname="com.zonski.godhood.duels.tools.FileFormatConverter" failonerror="on">
+            <arg value="-d"/>
+            <arg value="${demo.resources.rooms}"/>
+            <arg value="-s"/>
+            <arg value="xml"/>
+            <arg value="start"/>
+            <classpath>
+                <pathelement location="${work.dist}/${tools.jar}"/>
+                <pathelement location="${jdom.jar}"/>
+                <pathelement location="${xerces.jar}"/>
+                <pathelement location="c:\bin\j2sdk1.4.0\jre\lib\rt.jar"/>
+            </classpath>
+        </java>
+        <echo message="demo dragon"/>
+        <java classname="com.zonski.godhood.duels.tools.FileFormatConverter" failonerror="on">
+            <arg value="-d"/>
+            <arg value="${demo.resources.rooms}"/>
+            <arg value="-s"/>
+            <arg value="xml"/>
+            <arg value="dragon"/>
+            <classpath>
+                <pathelement location="${work.dist}/${tools.jar}"/>
+                <pathelement location="${jdom.jar}"/>
+                <pathelement location="${xerces.jar}"/>
+                <pathelement location="c:\bin\j2sdk1.4.0\jre\lib\rt.jar"/>
+            </classpath>
+        </java>
+    </target>
+
+
+</project>

@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Room width="9" height="9" name="Limbo" save="false">
+    <Welcome>Choose your character</Welcome>
+    <Tiles>CCCC CCCC
+CDDC CDDC
+CDDC CDDC
+CCCC CCCC
+
+CCCC CCCC
+CDDC CDDC
+CDDC CDDC
+CCCC CCCC
+</Tiles>
+    <Obstacles>
+
+
+
+
+
+
+
+
+</Obstacles>
+    <Friends />
+    <Prototype name="fire" entity-type-id="73" entity-type="phenomina" health="0"
+        collision-effect="none" level="5" armour-class="0" attack-bonus="0" speed="4" frequency="50">
+        <Categories>
+            <Category type="elemental" />
+        </Categories>
+        <Actions>
+            <Attack name="Burn" action="burns" range="0" number-of-sides="12" number-of-dice="1"
+                attack-bonus="5" create="0" percent-success="0" end-turn="true" radius="0" cost="0"
+                type="implicit" always-hits="true" effect-group="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="elemental" />
+                </Categories>
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="earth elemental" entity-type-id="33" entity-type="monster"
+        health="40" collision-effect="monster" level="6" armour-class="2"
+        attack-bonus="10" speed="10" frequency="53">
+        <Categories>
+            <Category type="elemental" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Bludgeon" action="bashes" range="1" number-of-sides="6" number-of-dice="1"
+                attack-bonus="0" percent-success="0" end-turn="true" radius="0" cost="6" type="hand-to-hand"
+                default-attack="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="elemental" />
+                </Categories>
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="Spellbook" entity-type-id="69"
+        entity-type="item" health="0" collision-effect="none"
+        level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories>
+            <Category type="magic" />
+        </Categories>
+        <Actions>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2">
+                <Filter />
+            </PutDown>
+            <Learn name="Learn Magic Missile" action="the {0} learns magic missile" cost="12">
+                <Filter>
+                </Filter>
+                <ToLearn>
+                    <Attack name="Magic Missile" action="casts magic missile at"
+                        range="4"
+                        number-of-sides="4"
+                        number-of-dice="2"
+                        attack-bonus="0"
+                        cost="6"
+                        type="magic"
+                        always-hits="true"
+                        consume="true">
+                        <Categories>
+                            <Category type="magic"/>
+                        </Categories>
+                    </Attack>
+                </ToLearn>
+            </Learn>
+            <Learn name="Learn Charm Animal" action="the {0} learns charm animal" cost="12">
+                <Filter>
+                </Filter>
+                <ToLearn>
+                    <Attack name="Charm Animal" action="charms" range="1" number-of-sides="0"
+                        number-of-dice="0" attack-bonus="0" percent-success="100" end-turn="true"
+                        radius="0" cost="12" type="hand-to-hand" consume="true">
+                        <PrerequisiteCategories />
+                        <Categories>
+                            <Category type="magic" />
+                        </Categories>
+                        <Confers>
+                            <Convert action="the {0} aligns itself with the {2}" cost="0" convert-to-side="0">
+                                <Filter>
+                                    <Category type="animal" />
+                                </Filter>
+                            </Convert>
+                        </Confers>
+                    </Attack>
+                </ToLearn>
+            </Learn>
+        </Actions>
+    </Prototype>
+    <Prototype name="prayer" entity-type-id="94" entity-type="phenomina" health="0" collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="4" frequency="50">
+        <Categories>
+        </Categories>
+        <Actions>
+            <Attack name="-" action="is heard by" range="0" number-of-sides="0"
+                number-of-dice="0" attack-bonus="0" create="0" percent-success="100"
+                end-turn="true" radius="0" cost="4" type="implicit" always-hits="true"
+                effect-group="true">
+                <PrerequisiteCategories />
+                <Categories>
+                </Categories>
+                <Confers>
+                    <TurnUndead cost="0" action="the {0} aligns itself with the {2}">
+                        <Filter>
+                            <Category type="undead"/>
+                        </Filter>
+                    </TurnUndead>
+                </Confers>
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="Stinking Cloud" entity-type-id="77" entity-type="phenomina" health="0" collision-effect="none"
+        level="8" armour-class="0" attack-bonus="0" speed="4" frequency="50">
+        <Categories>
+            <Category type="elemental" />
+        </Categories>
+        <Actions>
+            <Attack name="Envelop" action="envelops" range="0" number-of-sides="5" number-of-dice="1"
+                attack-bonus="0" create="0" percent-success="70" end-turn="true" radius="0" cost="0"
+                type="implicit" always-hits="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="elemental" />
+                </Categories>
+                <Confers>
+                    <Dazed name="staggers" action="The {0} {1}" cost="20">
+                        <Filter />
+                    </Dazed>
+                </Confers>
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="enchanted sword" entity-type-id="59" entity-type="item" health="0"
+        collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories>
+            <Category type="magic" />
+        </Categories>
+        <Actions>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2">
+                <Filter />
+            </PutDown>
+            <Attack name="Slash" action="slashes" range="1" number-of-sides="8" number-of-dice="1" attack-bonus="3" create="0" percent-success="0" end-turn="true" radius="0" cost="3" type="hand-to-hand">
+                <PrerequisiteCategories>
+                    <Category type="humanoid" />
+                </PrerequisiteCategories>
+                <Categories>
+                    <Category type="magic" />
+                </Categories>
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="holy cross" entity-type-id="63" entity-type="item" health="0" collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories>
+        </Categories>
+        <Actions>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2">
+                <Filter />
+            </PutDown>
+            <Attack name="Bash" action="bashes" range="1" number-of-sides="6" number-of-dice="1" attack-bonus="3" create="0" percent-success="0" end-turn="true" radius="0" cost="3" type="hand-to-hand">
+                <PrerequisiteCategories>
+                    <Category type="humanoid" />
+                </PrerequisiteCategories>
+                <Categories>
+                </Categories>
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="magician"
+        entity-type-id="42"
+        entity-type="monster"
+        health="30"
+        collision-effect="monster"
+        level="12"
+        armour-class="7"
+        attack-bonus="0"
+        speed="12"
+        frequency="50">
+        <Categories>
+            <Category type="humanoid" />
+            <Category type="intelligent" />
+            <Category type="magic" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0" create="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" action="" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Punch" action="punches"
+                range="1"
+                number-of-sides="2"
+                number-of-dice="1"
+                attack-bonus="0"
+                create="0"
+                percent-success="0"
+                end-turn="true"
+                radius="0"
+                cost="2"
+                type="hand-to-hand"
+                default-attack="true">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+            <Attack name="Cast Knock"
+                action="casts knock at"
+                range="3"
+                number-of-sides="0"
+                number-of-dice="0"
+                attack-bonus="0"
+                create="0"
+                percent-success="100"
+                end-turn="false"
+                radius="0"
+                cost="10"
+                type="magic"
+                good="true"
+                consume="true">
+                <Confers>
+                    <Unlock action="The {0} is unlocked" cost="0"/>
+                </Confers>
+            </Attack>
+            <Attack name="Magic Missile" action="casts magic missile at"
+                range="4"
+                number-of-sides="4"
+                number-of-dice="2"
+                attack-bonus="0"
+                cost="6"
+                type="magic"
+                always-hits="true"
+                consume="true">
+                <Categories>
+                    <Category type="magic"/>
+                </Categories>
+            </Attack>
+            <Attack name="Cast Stinking Cloud" action="casts stinking cloud at"
+                range="4"
+                number-of-sides="0"
+                number-of-dice="0"
+                attack-bonus="0"
+                create="77"
+                percent-success="0"
+                end-turn="true"
+                radius="1"
+                cost="8"
+                type="magic"
+                consume="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="magic" />
+                </Categories>
+            </Attack>
+            <Attack name="Summon Elemental" action="summons an elemental"
+                range="6"
+                number-of-sides="0"
+                number-of-dice="0"
+                attack-bonus="0"
+                create="33"
+                percent-success="0"
+                end-turn="true"
+                radius="0"
+                cost="12"
+                type="magic"
+                consume="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="magic" />
+                </Categories>
+            </Attack>
+            <Attack name="Charm Animal" action="charms" range="1" number-of-sides="0" number-of-dice="0"
+                attack-bonus="0" percent-success="100" end-turn="true" radius="0" cost="12"
+                type="hand-to-hand" consume="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="magic" />
+                </Categories>
+                <Confers>
+                    <Convert action="the {0} aligns itself with the {2}" cost="0" convert-to-side="0">
+                        <Filter>
+                            <Category type="animal" />
+                        </Filter>
+                    </Convert>
+                </Confers>
+            </Attack>
+            <Attack name="Charm Person" action="charms" range="1" number-of-sides="0" number-of-dice="0"
+                attack-bonus="0" percent-success="100" end-turn="true" radius="0" cost="12"
+                type="hand-to-hand" consume="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="magic" />
+                </Categories>
+                <Confers>
+                    <Convert action="the {0} aligns itself with the mage" cost="0" convert-to-side="0">
+                        <Filter>
+                            <Category type="humanoid" />
+                        </Filter>
+                    </Convert>
+                </Confers>
+            </Attack>
+            <Attack name="Fireball" action="casts a fireball at" range="4" number-of-sides="0" number-of-dice="0" attack-bonus="0" create="73" percent-success="0" end-turn="true" radius="2" cost="10" type="magic" consume="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="elemental" />
+                </Categories>
+            </Attack>
+
+            <Attack name="Chat" action="chats to"
+                range="1"
+                number-of-sides="0"
+                number-of-dice="0"
+                attack-bonus="0"
+                create="0"
+                percent-success="100"
+                end-turn="false"
+                radius="0"
+                cost="0"
+                good="true"
+                type="hand-to-hand">
+                <PrerequisiteCategories />
+                <Categories />
+                <Confers>
+                    <Provoke action="Talk" cost="0">
+                        <Filter />
+                    </Provoke>
+                </Confers>
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="cleric"
+        entity-type-id="51"
+        entity-type="monster"
+        health="50"
+        collision-effect="monster"
+        level="12"
+        armour-class="7"
+        attack-bonus="0"
+        speed="12"
+        frequency="55">
+        <Categories>
+            <Category type="humanoid" />
+            <Category type="intelligent" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0" create="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Pray name="Pray" action="The {0} prays" cost="12"/>
+            <Attack name="Punch" action="punches" range="1" number-of-sides="2" number-of-dice="1"
+                attack-bonus="0" create="0" percent-success="0" end-turn="true" radius="0" cost="2"
+                type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+            <Attack name="Cure Wounds" action="heals" range="1"
+                number-of-sides="-6" number-of-dice="2" attack-bonus="0"
+                create="0" percent-success="100" end-turn="true" radius="0" cost="4"
+                type="magic" consume="true" good="true" always-hits="true">
+                <PrerequisiteCategories />
+                <Categories>
+                </Categories>
+            </Attack>
+            <Attack name="Recruit" action="recruits" range="1" number-of-sides="0"
+                number-of-dice="0" attack-bonus="0" create="0" percent-success="100"
+                end-turn="true" radius="0" cost="10" type="hand-to-hand" always-hits="true" good="true">
+                <Confers>
+                    <Recruit cost="0">
+                        <Filter>
+                            <Category type="humanoid"/>
+                        </Filter>
+                    </Recruit>
+                </Confers>
+            </Attack>
+            <Attack name="Turn Undead" action="The {0} turns undead" range="0"
+                number-of-sides="0" number-of-dice="0" attack-bonus="0" create="94" percent-success="100"
+                end-turn="true" radius="2" cost="12" type="hand-to-hand"/>
+            <Attack name="Chat" action="chats to" range="1" number-of-sides="0" number-of-dice="0"
+                attack-bonus="0" create="0" percent-success="100" end-turn="false" radius="0"
+                good="true" cost="0" type="hand-to-hand" always-hits="true">
+                <PrerequisiteCategories />
+                <Categories />
+                <Confers>
+                    <Provoke cost="0" action="Talk">
+                        <Filter />
+                    </Provoke>
+                </Confers>
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="fighter"
+        entity-type-id="41"
+        entity-type="monster"
+        health="70"
+        collision-effect="monster"
+        level="12"
+        armour-class="0"
+        attack-bonus="3"
+        speed="12"
+        frequency="45">
+        <Categories>
+            <Category type="humanoid" />
+            <Category type="intelligent" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0" create="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Recruit" action="recruits" range="1" number-of-sides="0" number-of-dice="0"
+                attack-bonus="0" create="0" percent-success="100" end-turn="true" radius="0" cost="10"
+                type="hand-to-hand" good="true">
+                <Confers>
+                    <Recruit cost="0">
+                        <Filter />
+                    </Recruit>
+                </Confers>
+            </Attack>
+            <Attack name="Punch" action="punches" range="1" number-of-sides="2" number-of-dice="1"
+                attack-bonus="0" create="0" percent-success="0" end-turn="true" radius="0" cost="2"
+                type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+            <Attack name="Chat" action="chats to"
+                range="1"
+                number-of-sides="0"
+                number-of-dice="0"
+                attack-bonus="0"
+                create="0"
+                percent-success="100"
+                end-turn="false"
+                radius="0"
+                cost="0"
+                good="true"
+                type="hand-to-hand">
+                <PrerequisiteCategories />
+                <Categories />
+                <Confers>
+                    <Provoke action="Talk" cost="0">
+                        <Filter />
+                    </Provoke>
+                </Confers>
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="thief" entity-type-id="89" entity-type="monster"
+        health="40" collision-effect="monster" level="12"
+        armour-class="5" attack-bonus="0" speed="10" frequency="42">
+        <Categories>
+            <Category type="humanoid" />
+            <Category type="intelligent" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0" create="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" action="" cost="0">
+                <Filter />
+            </EndTurn>
+            <Attack name="Unlock" action="unlocks" range="1" number-of-sides="0" number-of-dice="0"
+                attack-bonus="0" create="0" percent-success="100" end-turn="false" radius="0"
+                cost="10" type="hand-to-hand" good="true">
+                <Confers>
+                    <Unlock name="unlocked" action="The {0} is {1}" cost="0"/>
+                </Confers>
+            </Attack>
+            <Attack name="Pickpocket" action="pickpockets" range="1" number-of-sides="0" number-of-dice="0"
+                attack-bonus="0" create="0" percent-success="75" end-turn="true" cost="4"
+                type="hand-to-hand" default-attack="false">
+                <PrerequisiteCategories />
+                <Categories />
+                <Confers>
+                    <PickPocket action="The {1} steals a {2} from the {0}" cost="0"/>
+                </Confers>
+            </Attack>
+            <Move cost="2" />
+            <Attack name="Backstab" action="stabs" range="1" number-of-sides="4" number-of-dice="1" attack-bonus="2" create="0" percent-success="5" end-turn="true" radius="0" cost="4" type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories />
+                <Confers>
+                    <Die name="dies" action="The {0} attempts to pull the dagger from its back before collapsing" cost="0"/>
+                </Confers>
+            </Attack>
+            <Attack name="Chat" action="chats to"
+                range="1"
+                number-of-sides="0"
+                number-of-dice="0"
+                attack-bonus="0"
+                create="0"
+                percent-success="100"
+                end-turn="false"
+                radius="0"
+                cost="0"
+                good="true"
+                type="hand-to-hand">
+                <PrerequisiteCategories />
+                <Categories />
+                <Confers>
+                    <Provoke action="Talk" cost="0">
+                        <Filter />
+                    </Provoke>
+                </Confers>
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="Portal" entity-type-id="86"
+        entity-type="inherit"
+        health="0"
+        collision-effect="none"
+        level="0"
+        armour-class="0"
+        attack-bonus="0"
+        speed="0"
+        frequency="0">
+        <Categories />
+    </Prototype>
+
+
+    <Entities>
+
+        <Entity entity-type-id="86" x="1" y="1" side="0">
+            <Actions>
+                <Exit name="Enter" action="The {0} enters the portal" cost="4"
+                    exit-name="res:///rooms/topside.room">
+                    <Filter />
+                </Exit>
+            </Actions>
+        </Entity>
+
+        <Entity entity-type-id="86" x="6" y="1" side="0">
+            <Actions>
+                <Exit name="Enter" action="The {0} enters the portal" cost="4"
+                    exit-name="res:///rooms/topside.room">
+                    <Filter />
+                </Exit>
+            </Actions>
+        </Entity>
+        <Entity entity-type-id="86" x="1" y="6" side="0">
+            <Actions>
+                <Exit name="Enter" action="The {0} enters the portal" cost="4"
+                    exit-name="res:///rooms/topside.room">
+                    <Filter />
+                </Exit>
+            </Actions>
+        </Entity>
+        <Entity entity-type-id="86" x="6" y="6" side="0">
+            <Actions>
+                <Exit name="Enter" action="The {0} enters the portal" cost="4"
+                    exit-name="res:///rooms/topside.room">
+                    <Filter />
+                </Exit>
+            </Actions>
+        </Entity>
+        <!-- magician -->
+        <Entity entity-type-id="42" x="1" y="1" side="1" boss="true">
+            <Items>
+                <Item entity-type-id="69"/>
+            </Items>
+        </Entity>
+
+        <!-- priest -->
+        <Entity entity-type-id="51" x="6" y="1" side="1" boss="true">
+
+            <Items>
+                <Item entity-type-id="63"/>
+            </Items>
+
+        </Entity>
+        <!-- fighter -->
+        <Entity entity-type-id="41" x="1" y="6" side="1" boss="true">
+
+            <Items>
+                <Item entity-type-id="59"/>
+            </Items>
+
+        </Entity>
+        <!-- thief -->
+        <Entity entity-type-id="89" x="6" y="6" side="1" boss="true">
+            <Actions>
+            </Actions>
+        </Entity>
+    </Entities>
+
+</Room>
+

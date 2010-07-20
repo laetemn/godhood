@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Room width="15" height="15" name="an ominous cavern">
+    <Welcome>After days of travel through this cursed land you reach the lair of the dragon, Alderstat</Welcome>
+    <Lose>You lose, loser</Lose>
+    <Tiles>CCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+  CCCCCCCCCCCC
+     CCCC    C
+       C     C
+       C    CC
+    CCCCC  CCCC
+CCCCCEEECC  CC
+EEEEEEEEEC
+EEEEEEEEEC
+    </Tiles>
+    <Obstacles>BBBBB BBBBBBBBB
+B  B        BBB
+B            BB
+BBBBBB  BB    B
+B    BBBB     B
+B       BB    B
+BBB           B
+  BBB    BBBB
+
+
+
+
+
+
+  I
+    </Obstacles>
+
+    <Prototype name="Door" entity-type-id="90" entity-type="impassable" collision-effect="bounce" health="10">
+        <Categories />
+    </Prototype>
+
+    <Prototype name="healing potion" entity-type-id="66" entity-type="item" health="1" collision-effect="none"
+        level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories />
+        <Actions>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2"/>
+            <Die name="is destroyed" action="the {0} {1}" cost="0"/>
+            <Attack name="Drink" action="The {1} quaffs the {2}" range="1" number-of-sides="0" number-of-dice="0" attack-bonus="0" create="0"  percent-success="100" end-turn="false" radius="0" cost="3" type="hand-to-hand" default-attack="false" consume="true" good="true">
+                <Confers>
+                    <Heal action="The {0} looks better" cost="0" amount="10"/>
+                </Confers>
+                <PrerequisiteCategories>
+                    <Category type="intelligent"/>
+                </PrerequisiteCategories>
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="potion of levitation" entity-type-id="65" entity-type="item" health="1"
+        collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories />
+        <Actions>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2"/>
+            <Die name="is destroyed" action="the {0} {1}" cost="0"/>
+            <Attack name="Drink" action="The {1} quaffs the {2}" range="1" number-of-sides="0"
+                number-of-dice="0" attack-bonus="0" create="0"  percent-success="100"
+                end-turn="false" radius="0" cost="3" type="hand-to-hand" default-attack="false"
+                consume="true" good="true">
+                <Confers>
+                    <Transmutation
+                        action="The {0} floats in the air"
+                        armour-bonus="1" cost="0">
+                        <Filter>
+                            <Category type="flying"/>
+                        </Filter>
+                    </Transmutation>
+                </Confers>
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="goblin" entity-type-id="43" entity-type="monster" health="20" collision-effect="monster" level="2" armour-class="7" attack-bonus="0" speed="9" frequency="45">
+        <Categories>
+            <Category type="humanoid" />
+            <Category type="intelligent" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0" create="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" action="" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Stab" action="stabs" range="1" number-of-sides="4" number-of-dice="1" attack-bonus="1" create="0" percent-success="0" end-turn="true" radius="0" cost="3" type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="sling" entity-type-id="62" entity-type="item" health="0"
+        collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories>
+            <Category type="magic" />
+        </Categories>
+        <Actions>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2">
+                <Filter />
+            </PutDown>
+            <Attack name="Shoot" action="fires a rock at" range="4" number-of-sides="4" number-of-dice="1"
+                attack-bonus="0" create="0" percent-success="5" end-turn="true" radius="0" cost="5"
+                type="thrown">
+                <PrerequisiteCategories>
+                    <Category type="humanoid" />
+                </PrerequisiteCategories>
+                <Confers>
+                    <Dazed action="the {0} is dazed" cost="3"/>
+                </Confers>
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="long bow" entity-type-id="68" entity-type="item" health="0" collision-effect="none"
+        level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories>
+        </Categories>
+        <Actions>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2">
+                <Filter />
+            </PutDown>
+            <Attack name="Shoot" action="shoots" range="5" number-of-sides="8"
+                number-of-dice="1" attack-bonus="1" create="0" percent-success="0" end-turn="true"
+                radius="0" cost="3" type="arrow">
+                <PrerequisiteCategories>
+                    <Category type="humanoid" />
+                </PrerequisiteCategories>
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="dog" entity-type-id="36" entity-type="monster" health="20" collision-effect="monster" level="1" armour-class="8" attack-bonus="4" speed="10" frequency="50">
+        <Categories>
+            <Category type="animal" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Bite" action="bites" range="1" number-of-sides="4" number-of-dice="1" attack-bonus="1" percent-success="0" end-turn="true" radius="0" cost="3" type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="bat" entity-type-id="97" entity-type="monster" health="20"
+        collision-effect="monster" level="1" armour-class="4" attack-bonus="0" speed="20" frequency="50">
+        <Categories>
+            <Category type="animal" />
+            <Category type="flying" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0">
+                <Filter />
+            </Die>
+            <EndTurn name="End turn" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Bite" action="bites" range="1" number-of-sides="4" number-of-dice="1" attack-bonus="0" end-turn="true" radius="0" cost="4" type="hand-to-hand">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="giant spider" entity-type-id="38" entity-type="monster" health="25"
+        collision-effect="monster" level="3" armour-class="5" attack-bonus="5" speed="8" frequency="60">
+        <Categories>
+            <Category type="animal" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Bite" action="bites" range="1" number-of-sides="4" number-of-dice="1"
+                attack-bonus="0" percent-success="4" end-turn="true" radius="0" cost="4" type="hand-to-hand">
+                <PrerequisiteCategories />
+                <Categories />
+                <Confers>
+                    <Die action="The {0} {1}" name="is fatally poisoned" cost="0">
+                        <Filter>
+                            <Category type="not" />
+                            <Category type="undead" />
+                        </Filter>
+                    </Die>
+                </Confers>
+            </Attack>
+            <Attack name="Web" action="fires webs at" range="3" number-of-sides="0" number-of-dice="0"
+                attack-bonus="0" percent-success="80" end-turn="true" radius="0" cost="8" type="thrown">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="elemental" />
+                </Categories>
+                <Confers>
+                    <Dazed name="stuck" action="The {0} is {1}" cost="30">
+                        <Filter />
+                    </Dazed>
+                </Confers>
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="fighter"
+        entity-type-id="41"
+        entity-type="monster"
+        health="70"
+        collision-effect="monster"
+        level="12"
+        armour-class="0"
+        attack-bonus="3"
+        speed="12"
+        frequency="45">
+        <Categories>
+            <Category type="humanoid" />
+            <Category type="intelligent" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0" create="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Punch" action="punches" range="1" number-of-sides="2" number-of-dice="1"
+                attack-bonus="0" create="0" percent-success="0" end-turn="true" radius="0" cost="2"
+                type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+            <Attack name="Chat" action="chats to"
+                range="1"
+                number-of-sides="0"
+                number-of-dice="0"
+                attack-bonus="0"
+                create="0"
+                percent-success="100"
+                end-turn="false"
+                radius="0"
+                cost="0"
+                good="true"
+                type="hand-to-hand">
+                <PrerequisiteCategories />
+                <Categories />
+                <Confers>
+                    <Provoke action="Talk" cost="0">
+                        <Filter />
+                    </Provoke>
+                </Confers>
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="sword" entity-type-id="59" entity-type="item" health="0"
+        collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories>
+            <Category type="magic" />
+        </Categories>
+        <Actions>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2">
+                <Filter />
+            </PutDown>
+            <Attack name="Slash" action="slashes" range="1" number-of-sides="8" number-of-dice="1" attack-bonus="3" create="0" percent-success="0" end-turn="true" radius="0" cost="3" type="hand-to-hand">
+                <PrerequisiteCategories>
+                    <Category type="humanoid" />
+                </PrerequisiteCategories>
+                <Categories>
+                    <Category type="magic" />
+                </Categories>
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="scroll of summoning" entity-type-id="55" entity-type="item" health="1" collision-effect="none"
+        level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories />
+        <Actions>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2"/>
+            <Die name="is destroyed" action="the {0} {1}" cost="0"/>
+            <Attack name="Summon Manticore"
+                action="reads a scroll, a manticore appears"
+                range="4"
+                number-of-sides="0"
+                number-of-dice="0"
+                attack-bonus="0"
+                create="87"
+                percent-success="0"
+                end-turn="true"
+                radius="0"
+                cost="9"
+                type="magic"
+                consume="true">
+                <PrerequisiteCategories>
+                    <Category type="intelligent"/>
+                </PrerequisiteCategories>
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="manticore" entity-type-id="87" entity-type="monster" health="30"
+        collision-effect="monster" level="8" armour-class="0" attack-bonus="0" speed="15" frequency="40">
+        <Categories>
+            <Category type="intelligent" />
+            <Category type="flying"/>
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Shoot" action="shoots spikes at" range="4" number-of-sides="4" number-of-dice="3" attack-bonus="0" percent-success="25" end-turn="true" radius="0" cost="6" type="arrow">
+                <PrerequisiteCategories />
+                <Categories>
+                </Categories>
+                <Confers>
+                    <Dazed name="Dazed" action="The {0} is {1}" cost="10">
+                        <Filter />
+                    </Dazed>
+                </Confers>
+            </Attack>
+            <Attack name="Bite" action="bites" range="1" number-of-sides="4" number-of-dice="2" attack-bonus="2" percent-success="0" end-turn="true" radius="0" cost="4" type="hand-to-hand">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="arch" entity-type-id="85" entity-type="inherit" health="0" collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories />
+    </Prototype>
+    <Entities>
+        <!-- fighter -->
+        <Entity entity-type-id="41" x="5" y="14" side="1" boss="true">
+            <Items>
+                <Item entity-type-id="59"/>
+            </Items>
+        </Entity>
+        <!-- his dog -->
+
+        <Entity entity-type-id="36" x="4" y="14" side="1"/>
+
+        <!-- healing potions -->
+        <Entity entity-type-id="66" x="1" y="2" side="0"/>
+        <!-- bats -->
+
+        <Entity entity-type-id="97" x="1" y="4" side="2"/>
+        <Entity entity-type-id="97" x="2" y="4" side="2"/>
+
+        <!-- spiders -->
+
+        <Entity entity-type-id="38" x="3" y="5" side="2"/>
+
+        <!-- goblins -->
+
+        <Entity entity-type-id="43" x="11" y="11" side="2">
+            <Items>
+                <Item entity-type-id="62"/>
+            </Items>
+        </Entity>
+        <Entity entity-type-id="43" x="12" y="10" side="2">
+            <Items>
+                <Item entity-type-id="68"/>
+            </Items>
+        </Entity>
+
+        <Entity entity-type-id="43" x="9" y="6" side="2" pacifist="true">
+            <Actions>
+                <Talk action="The goblin hops up and down, &quot;Go away, you'll wake the master!&quot;"
+                    cost="0"/>
+            </Actions>
+            <Items>
+                <Item entity-type-id="66"/>
+            </Items>
+        </Entity>
+
+        <Entity entity-type-id="43" x="10" y="6" side="2"/>
+
+        <!-- goblin shaman -->
+        <Entity name="gobin shaman" entity-type-id="43" x="3" y="2" side="2" pacifist="true">
+            <Actions>
+                <Talk action="The shaman waves his arms at you, &quot;get away from my stuff&quot;"
+                    cost="0"/>
+            </Actions>
+            <Items>
+                <!-- scroll of summon manticore -->
+                <Item entity-type-id="55"/>
+            </Items>
+        </Entity>
+        <!-- exit -->
+        <Entity entity-type-id="85" x="5" y="0" side="0">
+            <Actions>
+                <Exit name="Enter" action="The {0} leaves" cost="4" exit-name="res:///rooms/dragon.room">
+                    <Filter />
+                </Exit>
+            </Actions>
+        </Entity>
+        <!-- potion of levitation -->
+        <Entity entity-type-id="65" x="1" y="1" side="0"/>
+    </Entities>
+</Room>
+

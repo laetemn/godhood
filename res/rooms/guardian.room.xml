@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Room width="13" height="13" name="the Labyrinth">
+    <Welcome>A creature, swathed in robes stands before you. It rasps &quot;You'll never make it past me, hero!&quot;</Welcome>
+    <Lose>Ouch</Lose>
+    <Tiles>DDDDDDDDDDDDD
+D           D
+D DDD D DDDDD
+DDD D D D
+    D D DDDDD
+DDDDD D  D  D
+D     DD   DD
+DDDDD  D D D
+    DD D   DD
+DDD  D DDD  D
+D DDDD D DDDD
+D      D
+DDDDDD DDDDDD
+    </Tiles>
+    <Obstacles>
+
+
+
+
+
+
+
+
+
+
+
+
+    </Obstacles>
+
+    <Actions>
+        <Transmutation name=""
+            action="There is a soft whispering sound, the {0} opens his eyes to find himself floating above the ground"
+            armour-bonus="1" cost="0">
+            <Filter>
+                <Category type="flying"/>
+            </Filter>
+        </Transmutation>
+        <Talk name=""
+            action="Your gods voice booms out &quot;Ah my faithful vessel, I grant you...&lt;silence&gt;&quot;. You feel very alone."
+            cost="0"/>
+        <Talk name=""
+            action="Baromophets' voice echos around you &quot;Leave now, or face my wrath&quot;"
+            cost="0"/>
+        <Hurt action="Baromophets' voice echos around you &quot;You asked for it&quot;, a column of black flame engulfs you" amount="20" cost="0"/>
+    </Actions>
+
+    <Prototype name="fire" entity-type-id="74" entity-type="phenomina" health="0" collision-effect="none" level="10" armour-class="0" attack-bonus="0" speed="4" frequency="50">
+        <Categories>
+            <Category type="elemental" />
+        </Categories>
+        <Actions>
+            <Attack name="Burn" action="burns" range="0" number-of-sides="12" number-of-dice="2" attack-bonus="0" percent-success="0" end-turn="true" radius="0" cost="0"
+                type="implicit" always-hits="true" effect-group="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="elemental" />
+                </Categories>
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="Demon" entity-type-id="44" entity-type="monster" health="50" collision-effect="monster" level="8" armour-class="2" attack-bonus="4" speed="12" frequency="50">
+        <Categories>
+            <Category type="elemental" />
+            <!-- TODO : only here so that holy water works on it, should have unholy category -->
+            <Category type="undead" />
+            <Category type="humanoid" />
+            <Category type="intelligent" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Claw" action="claws" range="1" number-of-sides="4" number-of-dice="2" attack-bonus="0" percent-success="0" end-turn="true" radius="0" cost="3" type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="displacer beast" entity-type-id="39" entity-type="monster" health="40" collision-effect="monster" level="8" armour-class="-2" attack-bonus="4" speed="18" frequency="40">
+        <Categories />
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Displace" action="bashes" range="1" number-of-sides="6" number-of-dice="1" attack-bonus="0" percent-success="95" end-turn="true" radius="0" cost="9" type="hand-to-hand">
+                <PrerequisiteCategories />
+                <Categories />
+                <Confers>
+                    <Teleport name="displaced" action="The {0} is {1}" cost="0">
+                        <Filter />
+                    </Teleport>
+                </Confers>
+            </Attack>
+            <Attack name="Bite" action="bites" range="1" number-of-sides="4" number-of-dice="2" attack-bonus="0" percent-success="0" end-turn="true" radius="0" cost="4" type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="ring of teleportation" entity-type-id="54" entity-type="item"
+        health="0" collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories>
+            <Category type="magic" />
+        </Categories>
+        <Actions>
+            <Teleport name="Use" action="the {0} teleports" cost="8"/>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2">
+                <Filter />
+            </PutDown>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="wind elemental" entity-type-id="30" entity-type="monster" health="30" collision-effect="none" level="6" armour-class="-3" attack-bonus="3" speed="15" frequency="50">
+        <Categories>
+            <Category type="elemental" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Envelop" action="envelops" range="0" number-of-sides="6" number-of-dice="1" attack-bonus="1" percent-success="40" end-turn="true" radius="0" cost="1" type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="elemental" />
+                </Categories>
+                <Confers>
+                    <Dazed cost="15" action="the {0} staggers">
+                        <Filter />
+                    </Dazed>
+                </Confers>
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="dragon" entity-type-id="26" entity-type="monster" health="70" collision-effect="monster"
+        level="20" armour-class="-6" attack-bonus="10" speed="20" frequency="75">
+        <Categories>
+            <Category type="elemental" />
+            <Category type="flying" />
+            <Category type="magic" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Bite" action="bites" range="1" number-of-sides="8" number-of-dice="2" attack-bonus="0" percent-success="0" end-turn="true" radius="0" cost="5" type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="elemental" />
+                </Categories>
+            </Attack>
+            <Attack name="Claw" action="claws" range="1" number-of-sides="6" number-of-dice="2" attack-bonus="0" percent-success="0" end-turn="true" radius="0" cost="3" type="hand-to-hand">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+            <Attack name="Flame" action="flames" range="5" number-of-sides="0" number-of-dice="0" attack-bonus="0" create="74" percent-success="0" end-turn="true" radius="0" cost="13" type="magic">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="elemental" />
+                </Categories>
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="hydra" entity-type-id="88" entity-type="monster" health="50"
+        collision-effect="monster" level="9" armour-class="-2" attack-bonus="0" speed="10" frequency="50">
+        <Categories>
+            <Category type="elemental" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Bite" action="bites" range="1" number-of-sides="6" number-of-dice="1" attack-bonus="1" percent-success="0" end-turn="false" radius="0" cost="2" type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="portal" entity-type-id="86"
+        entity-type="inherit"
+        health="0"
+        collision-effect="none"
+        level="0"
+        armour-class="0"
+        attack-bonus="0"
+        speed="0"
+        frequency="0">
+        <Categories />
+    </Prototype>
+    <Prototype name="guardian"
+        entity-type-id="98"
+        entity-type="monster"
+        health="30"
+        collision-effect="monster"
+        level="10"
+        armour-class="7"
+        attack-bonus="0"
+        speed="12"
+        frequency="50">
+        <Categories>
+            <Category type="humanoid" />
+            <Category type="intelligent" />
+            <Category type="magic" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0" create="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" action="" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Punch" action="punches"
+                range="1"
+                number-of-sides="2"
+                number-of-dice="1"
+                attack-bonus="0"
+                create="0"
+                percent-success="0"
+                end-turn="true"
+                radius="0"
+                cost="2"
+                type="hand-to-hand"
+                default-attack="true">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Entities>
+        <Entity entity-type-id="86" x="5" y="12" side="0" health="0" boss="false">
+            <Actions>
+                <Exit name="Enter" action="The {0} enters the portal" cost="4" exit-name="res:///rooms/crypt.room">
+                    <Filter />
+                </Exit>
+            </Actions>
+        </Entity>
+        <Entity entity-type-id="86" x="12" y="12" side="0" health="0" boss="false">
+            <Actions>
+                <Exit name="Enter" action="The {0} enters the portal" cost="4" exit-name="res:///rooms/baromophet.room">
+                    <Filter />
+                </Exit>
+            </Actions>
+        </Entity>
+        <Entity entity-type-id="54" x="9" y="7" side="0"/>
+        <Entity name="guardian" entity-type-id="98" x="6" y="2" side="3" boss="true">
+            <Actions>
+                <Attack name="Summon Hydra" action="summons a hydra"
+                    range="6"
+                    number-of-sides="0"
+                    number-of-dice="0"
+                    attack-bonus="0"
+                    create="88"
+                    percent-success="0"
+                    end-turn="true"
+                    radius="0"
+                    cost="12"
+                    type="magic"
+                    consume="true">
+                    <PrerequisiteCategories />
+                    <Categories>
+                        <Category type="magic" />
+                    </Categories>
+                </Attack>
+                <Attack name="Summon Dragon" action="summons a dragon"
+                    range="6"
+                    number-of-sides="0"
+                    number-of-dice="0"
+                    attack-bonus="0"
+                    create="26"
+                    percent-success="0"
+                    end-turn="true"
+                    radius="0"
+                    cost="12"
+                    type="magic"
+                    consume="true">
+                    <PrerequisiteCategories />
+                    <Categories>
+                        <Category type="magic" />
+                    </Categories>
+                </Attack>
+                <Attack name="Summon Elemental" action="summons an elemental"
+                    range="6"
+                    number-of-sides="0"
+                    number-of-dice="0"
+                    attack-bonus="0"
+                    create="30"
+                    percent-success="0"
+                    end-turn="true"
+                    radius="0"
+                    cost="12"
+                    type="magic"
+                    consume="true">
+                    <PrerequisiteCategories />
+                    <Categories>
+                        <Category type="magic" />
+                    </Categories>
+                </Attack>
+                <Attack name="Summon Displacer" action="summons a displacer beast"
+                    range="1"
+                    number-of-sides="0"
+                    number-of-dice="0"
+                    attack-bonus="0"
+                    create="39"
+                    percent-success="0"
+                    end-turn="true"
+                    radius="0"
+                    cost="12"
+                    type="magic"
+                    consume="true">
+                    <PrerequisiteCategories />
+                    <Categories>
+                        <Category type="magic" />
+                    </Categories>
+                </Attack>
+                <Attack name="Summon Demon" action="summons a demon"
+                    range="1"
+                    number-of-sides="0"
+                    number-of-dice="0"
+                    attack-bonus="0"
+                    create="44"
+                    percent-success="0"
+                    end-turn="true"
+                    radius="0"
+                    cost="12"
+                    type="magic"
+                    consume="true">
+                    <PrerequisiteCategories />
+                    <Categories>
+                        <Category type="magic" />
+                    </Categories>
+                </Attack>
+            </Actions>
+        </Entity>
+    </Entities>
+</Room>
+

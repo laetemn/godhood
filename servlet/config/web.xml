@@ -1,0 +1,15 @@
+<web-app>
+    <display-name>Godhood-Duels</display-name>
+    <description>
+        Godhood level server
+    </description>
+    <servlet>
+        <servlet-name>DuelsServlet</servlet-name>
+        <servlet-class>com.zonski.godhood.duels.servlet.DuelsServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DuelsServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+</web-app>

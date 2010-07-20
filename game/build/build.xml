@@ -1,0 +1,15 @@
+<project name="game" default="compile" basedir=".">
+    
+    <property file="..\..\global\build\global.properties"/>
+    <property file=".\build.properties"/>
+
+    <target name="init">
+        <mkdir dir="${work.classes}"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src.java}" destdir="${work.classes}" debug="${debug}">
+        </javac>
+    </target>
+
+</project>

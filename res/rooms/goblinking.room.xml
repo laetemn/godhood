@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Room width="15" height="15" name="the lair of the goblin king">
+    <Welcome>In the distance you hear gibbering in an unfamiliar tounge. Something seems to be cooking, smells like pork...</Welcome>
+    <Lose>The goblins howl in delight and start tearing into your dead flesh</Lose>
+    <Tiles>EEEEEEEEEEEEEEE
+EEEEEEEEEEEEEEE
+EEEEEEEEEEEEEEE
+EEEEEEEEEEEEEEE
+EEEEEEEEEEEEEEE
+CCCCCEEEEEEEEEE
+CCCCCEEEEEEEEEE
+CCCCCEEEEEEEEEE
+EEEEEEEEEEEEEEE
+EEEEEEEEEEEEEEE
+EEEEEEEEEEEEEEE
+EEEEEEEEEEEEEEE
+EEEEEEEEEEEEEEE
+EEEEEEEEEEEEEEE
+EEEEEEEEEEEEEEE
+    </Tiles>
+    <Obstacles>AAAAAAAAAAAAAAA
+A    AAA      A
+A         L   A
+A    AAA    A A
+AAAAAA     AA A
+     A     A  A
+A    A     A  A
+AA  AAAAA  AA A
+AA      AA  AAA
+AA   AA  A    A
+AAA  A   AAA  A
+AAA  AAAAAAA  A
+A             A
+A     AA      A
+AAAAAAAAAAAAAAA
+    </Obstacles>
+    <Friends>
+        <Friend side="5" />
+    </Friends>
+    <Actions>
+
+    </Actions>
+    <Prototype name="goblin" entity-type-id="43" entity-type="monster" health="20" collision-effect="monster" level="2" armour-class="7" attack-bonus="0" speed="9" frequency="45">
+        <Categories>
+            <Category type="humanoid" />
+            <Category type="intelligent" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0" create="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" action="" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Stab" action="stabs" range="1" number-of-sides="4" number-of-dice="1" attack-bonus="1" create="0" percent-success="0" end-turn="true" radius="0" cost="3" type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="mangy dog" entity-type-id="36" entity-type="monster" health="20" collision-effect="monster" level="1" armour-class="8" attack-bonus="4" speed="10" frequency="50">
+        <Categories>
+            <Category type="animal" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Bite" action="bites" range="1" number-of-sides="4" number-of-dice="1" attack-bonus="1" percent-success="0" end-turn="true" radius="0" cost="3" type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="sheppard" entity-type-id="52" entity-type="monster" health="20"
+        collision-effect="monster" level="1" armour-class="10" attack-bonus="1" speed="10" frequency="50">
+        <Categories>
+            <Category type="humanoid" />
+            <Category type="intelligent" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0" create="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" action="" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Punch" action="punches" range="1" number-of-sides="2" number-of-dice="1" attack-bonus="0" create="0" percent-success="0" end-turn="true" radius="0" cost="2" type="hand-to-hand">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="stone skin potion" entity-type-id="64" entity-type="item" health="0"
+        collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories>
+            <Category type="magic" />
+        </Categories>
+        <Actions>
+            <Attack name="Drink" action="The {1} quaffs the {2}" range="1" number-of-sides="0"
+                number-of-dice="0" attack-bonus="0" create="0"  percent-success="100" end-turn="false"
+                radius="0" cost="3" type="hand-to-hand" default-attack="false" consume="true" good="true">
+                <Confers>
+                    <!-- confers earth abilities onto the entity, useful for not being turned to stone... -->
+                    <Transmutation action="The {0} looks rock hard" cost="0" armour-bonus="4">
+                        <Filter>
+                            <Category type="elemental"/>
+                        </Filter>
+                    </Transmutation>
+                </Confers>
+            </Attack>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2"/>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="stun gloves" entity-type-id="62" entity-type="item" health="0"
+        collision-effect="none" level="0" armour-class="2" attack-bonus="1" speed="0" frequency="0">
+        <Categories>
+            <Category type="magic" />
+        </Categories>
+        <Actions>
+            <Attack name="Punch" action="punches" range="1" number-of-sides="2" number-of-dice="1"
+                attack-bonus="2" percent-success="75" end-turn="true" radius="0" cost="2" type="hand-to-hand">
+                <PrerequisiteCategories>
+                    <Category type="humanoid" />
+                </PrerequisiteCategories>
+                <Categories>
+                    <Category type="magic" />
+                </Categories>
+                <Confers>
+                    <Dazed name="dazed" action="The {0} is {1}" cost="10">
+                        <Filter />
+                    </Dazed>
+                </Confers>
+            </Attack>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2"/>
+        </Actions>
+    </Prototype>
+    <Prototype name="ladder" entity-type-id="82" entity-type="inherit" health="0" collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories />
+    </Prototype>
+    <Prototype name="arch" entity-type-id="84" entity-type="inherit" health="0" collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories />
+    </Prototype>
+    <Entities>
+        <!-- goblins -->
+        <Entity entity-type-id="43" x="13" y="3" side="2" pacifist="true"/>
+        <Entity entity-type-id="43" x="9" y="3" side="2" />
+        <Entity entity-type-id="43" x="10" y="1" side="2" />
+        <Entity entity-type-id="43" x="10" y="1" side="2" />
+        <Entity entity-type-id="43" x="1" y="3" side="2" >
+            <Actions>
+                <Talk name="Talk" action="" cost="0">
+                    <Filter />
+                </Talk>
+            </Actions>
+            <Items>
+                <Item entity-type-id="62"/>
+                <Item entity-type-id="64"/>
+            </Items>
+            <Prototype name="goblin king" entity-type-id="43" entity-type="monster" health="40" collision-effect="monster" level="5" armour-class="5" attack-bonus="0" speed="12" frequency="45">
+                <Categories>
+                    <Category type="humanoid" />
+                    <Category type="intelligent" />
+                </Categories>
+                <Actions>
+                    <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                        <Filter />
+                    </PickUp>
+                    <Die name="dies" action="The goblin king lurches to one side, &quot;If you think you've won, you're mistaken hero. Ha ha ha!&quot;. He's dead" cost="0" create="0">
+                        <Filter />
+                    </Die>
+                    <Defend name="Defend" action="The {0} defends" cost="3">
+                        <Filter />
+                    </Defend>
+                    <EndTurn name="End turn" action="" cost="0">
+                        <Filter />
+                    </EndTurn>
+                    <Move cost="2" />
+                    <Attack name="Stab" action="stabs" range="1" number-of-sides="4" number-of-dice="1" attack-bonus="1" create="0" percent-success="0" end-turn="true" radius="0" cost="3" type="hand-to-hand" default-attack="true">
+                        <PrerequisiteCategories />
+                        <Categories />
+                    </Attack>
+                </Actions>
+            </Prototype>
+        </Entity>
+
+        <Entity name="mangy dog" entity-type-id="36" x="9" y="12" side="2" >
+            <Actions />
+        </Entity>
+
+        <Entity name="sheppard" entity-type-id="52" x="13" y="6" side="5" pacifist="true">
+            <Actions>
+                <Talk name="Talk" action="Thank the goodness you're here, I was next for the cooking pot" cost="0">
+                    <Filter />
+                </Talk>
+            </Actions>
+        </Entity>
+
+
+        <Entity name="ladder" entity-type-id="82" x="12" y="12" side="0" health="0" boss="false">
+            <Actions>
+                <Exit name="Ascend" action="The {0} climbs up the ladder" cost="4" exit-name="res:///rooms/topside.room">
+                    <Filter />
+                </Exit>
+            </Actions>
+        </Entity>
+        <Entity name="arch" entity-type-id="84" x="0" y="5" side="0" health="0" boss="false">
+            <Actions>
+                <Exit name="Enter" action="The {0} enters the archway" cost="4" exit-name="res:///rooms/crypt.room">
+                    <Filter />
+                </Exit>
+            </Actions>
+        </Entity>
+    </Entities>
+</Room>
+

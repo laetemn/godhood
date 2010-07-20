@@ -1,0 +1,40 @@
+<project name="server-test" default="run" basedir=".">
+
+    <property file="..\..\global\build\global.properties"/>
+    <property file=".\build.properties"/>
+
+    <target name="init">
+        <mkdir dir="${work.classes}"/>
+        <mkdir dir="${work.dist}"/>
+    </target>
+
+    <target name="compile" depends="init,compile-dependencies">
+        <javac srcdir="${src.java}" destdir="${work.classes}" debug="${debug}">
+            <classpath>
+                <pathelement location="${server.work.classes}"/>
+                <pathelement location="${game.work.classes}"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="compile-dependencies">
+        <ant antfile="${server.build.dir}/build.xml" dir="${server.build.dir}"
+            inheritAll="false"/>
+    </target>
+
+    <target name="run" depends="compile">
+        <java classname="com.zonski.godhood.duels.server.test.AllEntityRoomFileGenerator" fork="true">
+            <jvmarg value="-Xint"/>
+            <jvmarg value="-Djava_compiler=none"/>
+            <classpath>
+                <pathelement location="${server.work.classes}"/>
+                <pathelement location="${game.work.classes}"/>
+                <pathelement location="${work.classes}"/>
+                <pathelement location="${jdom.jar}"/>
+                <pathelement location="${xerces.jar}"/>
+                <pathelement location="c:\bin\j2sdk1.4.0\jre\lib\rt.jar"/>
+             </classpath>
+        </java>
+    </target>
+
+</project>

@@ -1,0 +1,115 @@
+i1,0,0,16,18// tile
+i2,0,18,16,20// tile
+i3,48,44,16,18// tile
+i4,164,87,16,18// earth tile
+i13,148,22,16,17,12// earth wall obstacle
+i14,48,24,16,20,12//rock wall obstacle
+i15,0,78,16,18,12//room wall obstacle
+i20,48,62,11,33//pine tree obstacle
+i101,164,22,10,16,7,0//bleeding
+i103,16,32,16,16,7,0//shooting
+sWeb,103,52,10,9,0//web
+i113,17,65,14,14,7,0//defend
+i102,16,81,16,11//die
+sEND,33,0,14,14,8//end turn
+i106,34,13,16,13//walk
+i107,34,26,8,15,8,0//pick up
+i108,41,26,8,15,2,0//put down
+i110,32,64,16,16,8,0//hand to hand
+i109,32,81,16,13,8,0//dazed
+i111,41,33,8,8//descend
+sASC,34,30,8,8//ascend
+i112,87,54,15,15//wait
+ssm,117,39,22,19//straight move
+sdm,102,61,25,23//diagonal move
+i114,162,46,19,15//octogram
+i117,25,53,7,12// cross/holy action
+i118,34,0,15,13// fly
+i119,205,72,9,6//up
+i120,206,77,7,5//down
+i121,205,98,5,7//left
+i122,209,98,5,7//right
+i123,205,82,9,6//attack up
+i124,206,87,7,5//attack down
+i125,205,92,5,7//attack left
+i126,209,92,5,7//attack right
+i45,16,22,7,7//move ne
+i105,23,21,6,6//move se
+i104,17,10,6,6//move sw
+i100,17,15,6,6//move nw
+i99,22,15,7,7//attack ne
+i79,23,10,6,6//attack se
+i71,28,10,6,6//attack sw
+i70,28,15,6,6//attack nw
+i35,164,36,7,7//center move
+i32,41,26,7,7//center pickup
+i34,117,40,7,7//center baddy
+sold,205,72,12,12//diagonal move icon
+i63,25,53,7,12// cross
+i94,25,53,7,12// cross/holy phenomina
+i68,72,65,14,9,10//darkbow
+i69,73,74,13,9//book
+i58,73,91,17,5//firesword
+i59,73,91,17,5//icesword
+i54,60,78,7,6//ring of protection
+i57,60,70,10,8//shield
+i82,0,46,8,32//ladder up
+i83,103,42,14,10,11//ladder down
+i72,8,48,17,18,10//fountain
+i73,60,84,13,12//spot fire
+i74,60,84,13,12//big spot fire
+i75,140,43,11,24//small lightning
+i76,140,43,11,24//lightning
+i78,86,69,16,24//whirlwind
+i80,118,24,15,16//avalanche
+i25,0,96,11,24//statue
+i77,109,84,18,12,6//sleeping gas
+i81,109,84,18,12,6//poison gas
+i16,48,0,16,24,12//fence
+i17,48,62,11,33//pine tree
+i21,127,67,23,29//dead tree
+i22,127,67,23,29,8,10,12,2,2,1,13,12,2,2,1//malevolent tree
+i44,182,75,23,31//demon
+i43,64,28,15,20,8,5,5,3,3,1//goblin
+i37,79,37,10,9,8,1,4,2,-1,1//cat
+i26,79,0,20,37,10,6,3,2,2,1//dragon
+i41,99,3,18,30//knight
+i29,134,0,14,28,6,1,2,0,0,2,3,2,0,0,2//ghost
+i30,86,69,16,24,8,9,8,0,0,2,7,8,0,0,2//wind elemental
+i33,118,24,15,16,8,7,7,0,0,2,9,7,0,0,2//earth elemental
+i36,99,32,16,10,9,5,2,1,3,2//dog
+i38,134,119,16,11,8,5,7,0,0,2,7,7,0,0,2//spider
+i42,63,3,16,25//mage
+i46,50,96,36,32,11,17,18,0,5,2,18,18,0,5,2,16,19,3,0,2,16,20,3,0,2//angel
+i39,90,94,21,36,8,14,8,1,0,2//displacer
+i47,111,96,21,31,9,9,2,0,0,2,11,2,0,0,2//ogre
+i48,132,96,16,23,8,7,1,0,0,2,9,1,0,0,2//zombi
+i49,0,96,11,25,8,4,6,3,3,1//golem
+i40,0,120,14,10,8,2,2,0,0,2,4,2,0,0,2//sheep
+i51,197,41,19,31// priest
+i52,148,0,16,22,8,8,1,0,0,2,10,1,0,0,2//man
+i53,164,0,9,22,8,2,6,1,1,2,4,7,1,-1,2//woman
+i87,160,61,22,23,8,1,11,0,0,2,3,11,0,0,2//manticore
+i88,150,107,22,23,8,11,1,0,0,2,13,3,0,0,2,18,3,0,0,2,18,11,0,0,2//hydra
+i86,150,85,14,22//portal (door or magic - intentionally ambiguous)
+i84,172,105,12,25//arch facing left
+i85,183,105,12,25//arch facing right
+i90,194,105,12,25//door facing left
+i91,205,105,12,25//door facing right
+i18,36,43,12,21//bush obstacle
+i23,89,37,8,14//tombstone
+i24,60,84,13,12//bonfire
+i64,8,66,7,11//red potion
+i65,86,96,4,11//green potion
+i66,60,60,11,10//blue potion
+i89,150,43,13,28// thief
+i61,4,38,12,9// key
+i92,173,0,40,41//demigod, baromophet
+i93,35,124,8,6//eye, baromophet
+i55,133,28,14,9//scroll
+i95,34,100,16,24,8,8,1,0,0,2,10,1,0,0,2//mummy
+i62,71,50,16,15//treasure (generic)
+i96,182,40,15,29//worshipper of baromophet
+i97,16,0,18,10,2,8,7,0,0,2,10,7,0,0,2// bat
+i98,14,102,21,28,6// evil wizard
+i50,117,0,13,24,8,1,1,0,0,2//old man

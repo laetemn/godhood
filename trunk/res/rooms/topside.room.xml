@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Room width="15" height="15" name="a grassy field">
+    <Welcome>After several days travel you arrive at the Alter of Ascension, to your dismay you see that the Eye has already been swiped!</Welcome>
+    <Win win-style="item">The {0} liberated the Eye of Ascension from Baromophet, purging evil from the land...for now</Win>
+    <Lose>You lose, loser</Lose>
+    <Tiles>BBBBBCBBBBBBBBB
+BBBBBCBBBBBBBBB
+BBBBBCBBBBBBBBB
+BBBBBCBBBBBBBBB
+BBBBBCBBBBBBBBB
+BBBBBCBBBBCCCCC
+BBBBBCBBBBCCCCC
+CCCCCCCCCCCCCCC
+BBBEBBBBBBCCCCC
+BBBEBBBBBBCCCCC
+BBBEBBBBBBBBBBB
+BBBEBBBBBBBBBBB
+BBBEBBBBBBBBBBB
+BBBEBBBBBBBBBBB
+BBBEBBBBBBBBBBB
+    </Tiles>
+    <Obstacles>BBBBB BBBBBBBBB
+DE            D
+D             D
+D             D
+D             D
+D         BBBBB
+D         B   B
+              B
+DI        B   B
+D     E   BBBBB
+D E    E     EF
+D I        E  F
+D       F   FEE
+D     F    F
+BE      F EE
+    </Obstacles>
+    <Friends>
+        <Friend side="5"/>
+    </Friends>
+    <Actions>
+        <!-- room actions -->
+        <Heal action="A ray of light strikes down from the clouds, the {0} is completely healed" amount="100" cost="0"/>
+        <Heal action="A ray of light strikes down from the clouds, the {0} is completely healed" amount="100" cost="0"/>
+    </Actions>
+
+    <Prototype name="Fountain" entity-type-id="72" entity-type="inherit" health="0"
+        collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories />
+    </Prototype>
+
+    <Prototype name="sheep" entity-type-id="40" entity-type="monster" health="12" collision-effect="monster" level="0" armour-class="10" attack-bonus="0" speed="9" frequency="75">
+        <Categories>
+            <Category type="animal" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0" create="0">
+                <Filter />
+            </Die>
+            <EndTurn name="End turn" action="" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Bite" action="bites" range="1" number-of-sides="2" number-of-dice="1" attack-bonus="0" create="0" percent-success="0" end-turn="true" radius="0" cost="3" type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="holy water" entity-type-id="66" entity-type="item" health="0" collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories />
+        <Actions>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2"/>
+            <Attack name="Splash" action="The {1} is christened" range="1" number-of-sides="0"
+                number-of-dice="0" attack-bonus="0" create="0"  percent-success="100"
+                end-turn="false" radius="0" cost="3" type="hand-to-hand"
+                consume="true">
+                <PrerequisiteCategories>
+                    <Category type="intelligent" />
+                    <Category type="humanoid" />
+                </PrerequisiteCategories>
+                <Confers>
+                    <Hurt name="turned" action="Part of the {0} turns to ash" cost="0" amount="30">
+                        <Filter>
+                            <Category type="undead"/>
+                        </Filter>
+                    </Hurt>
+                </Confers>
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="cultist" entity-type-id="96" entity-type="monster" health="40"
+        collision-effect="monster" level="3" armour-class="7" attack-bonus="0" speed="12" frequency="55">
+        <Categories>
+            <Category type="humanoid" />
+            <Category type="intelligent" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies"
+                action="The {0} laughes gleefully, &quot;Deliver me, oh Baromophet!&quot;. An expression of mingled ecstacy and terror crosses the dead mans face" cost="0" create="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" action="" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Stab" action="stabs" range="1" number-of-sides="4" number-of-dice="1" attack-bonus="1" create="0" percent-success="0" end-turn="true" radius="0" cost="3" type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="goblin" entity-type-id="43" entity-type="monster" health="20" collision-effect="monster" level="2" armour-class="7" attack-bonus="0" speed="9" frequency="45">
+        <Categories>
+            <Category type="animal" />
+            <Category type="humanoid" />
+            <Category type="intelligent" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0" create="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" action="" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Stab" action="stabs" range="1" number-of-sides="4" number-of-dice="1" attack-bonus="1" create="0" percent-success="0" end-turn="true" radius="0" cost="3" type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Prototype name="Arch" entity-type-id="84" entity-type="inherit" health="0" collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories />
+    </Prototype>
+    <Prototype name="Arch" entity-type-id="85" entity-type="inherit" health="0" collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories />
+    </Prototype>
+    <Prototype name="Trapdoor" entity-type-id="83" entity-type="inherit" health="0" collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories />
+    </Prototype>
+    <Entities>
+        <!-- sheep -->
+        <Entity entity-type-id="40" x="8" y="1" side="5" health="12" boss="false" pacifist="true">
+            <Actions />
+        </Entity>
+
+        <Entity name="Arch" entity-type-id="84" x="0" y="7" side="0" >
+            <Actions>
+                <Exit name="Enter" action="The {0} leaves" cost="4" exit-name="res:///rooms/graveyard.room">
+                    <Filter />
+                </Exit>
+            </Actions>
+        </Entity>
+        <Entity name="Arch" entity-type-id="85" x="5" y="0" side="0" >
+            <Actions>
+                <Exit name="Enter" action="The {0} leaves" cost="4" exit-name="res:///rooms/town.room">
+                    <Filter />
+                </Exit>
+            </Actions>
+        </Entity>
+        <Entity name="Hole" entity-type-id="83" x="14" y="14" side="0" >
+            <Actions>
+                <Exit name="Descend" action="The {0} enters the hole" cost="4" exit-name="res:///rooms/goblinking.room">
+                    <Filter />
+                </Exit>
+            </Actions>
+        </Entity>
+        <!-- worshippers -->
+        <Entity entity-type-id="96" x="10" y="7" side="2" pacifist="true">
+            <Actions>
+                <Talk name="Talk" action="Mwa-ha-ha-ha, you're too late, we have the Eye" cost="0"/>
+            </Actions>
+        </Entity>
+
+        <!-- holy water -->
+        <Entity entity-type-id="66" x="12" y="6" side="0"/>
+
+        <!-- goblin -->
+        <Entity entity-type-id="43" x="13" y="14" side="2" />
+        <Entity entity-type-id="43" x="11" y="1" side="2" />
+        <Entity entity-type-id="43" x="8" y="2" side="2"/>
+        <!-- guardian goblin - keeps people out of the hole -->
+        <Entity name="guard goblin" entity-type-id="43" x="11" y="12" side="2" pacifist="true">
+            <Actions>
+                <Talk name="Talk" action="Stay away!" cost="0"/>
+            </Actions>
+        </Entity>
+
+        <!-- fountain -->
+        <Entity entity-type-id="72" x="12" y="7" side="0">
+            <Actions>
+                <Heal name="Drink" action="The {0} feels a bit better"
+                    amount="5" cost="2"/>
+            </Actions>
+        </Entity>
+
+    </Entities>
+</Room>
+

@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Room width="15" height="15" name="Alderstats Lair">
+    <Welcome>Smoke boils through the cavern, this must be Alderstats lair.</Welcome>
+    <Win win-style="last-boss-standing">Alderstat roars as he topples down into the abyss below, he's dead</Win>
+    <Lose>Alderstat roars in delight at your death</Lose>
+    <Tiles>    CCCCCCC
+  CCCCCCCCCCC
+ CCCC  C  CCCC
+CCCC  CCC  CCCC
+CCCC CCCCC CCCC
+CCCC CCCCC CCCC
+CCCC  CCC  CCCC
+CCCCC     CCCCC
+CCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+CCCCCCCCCCCCCCC
+    </Tiles>
+    <Obstacles>   BBBBBBBBB
+  BB       BB
+ BB         BB
+BB           BB
+B             B
+B             B
+B           BBB
+B BB       BBBB
+B BBBBB  BBB  B
+B B   B       B
+B B B B   BBB B
+B B B     B   B
+B   B     B BBB
+B   B         B
+BBBBB BBBBBBBBB
+    </Obstacles>
+    <Prototype name="arch" entity-type-id="85" entity-type="inherit" health="0" collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories />
+    </Prototype>
+
+    <Prototype name="shield" entity-type-id="57" entity-type="item" health="0" collision-effect="none" level="0" armour-class="3" attack-bonus="0" speed="0" frequency="0">
+        <Categories/>
+        <Actions>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2">
+                <Filter />
+            </PutDown>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="scroll" entity-type-id="55" entity-type="item" health="1" collision-effect="none"
+        level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories />
+        <Actions>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2"/>
+            <Die name="is destroyed" action="the {0} {1}" cost="0"/>
+            <Attack name="Call Lightning"
+                action="reads a scroll, lightning strikes"
+                range="3"
+                number-of-sides="0"
+                number-of-dice="0"
+                attack-bonus="0"
+                create="75"
+                percent-success="0"
+                end-turn="true"
+                radius="0"
+                cost="10"
+                type="magic"
+                consume="true">
+              <PrerequisiteCategories />
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="lightning" entity-type-id="75" entity-type="phenomina"
+        health="0" collision-effect="none" level="4" armour-class="0" attack-bonus="0"
+        speed="4" frequency="100">
+        <Categories>
+            <Category type="elemental" />
+        </Categories>
+        <Actions>
+            <Attack name="-" action="blasts" range="0" number-of-sides="8" number-of-dice="1"
+                attack-bonus="0" create="0" percent-success="0" end-turn="true" radius="0"
+                cost="4" type="implicit" always-hits="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="elemental" />
+                </Categories>
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="figurine of a displacer beast" entity-type-id="62" entity-type="item" health="0" collision-effect="none"
+        level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories />
+        <Actions>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2"/>
+            <Attack name="Use"
+                action="splashes water on the figurine"
+                range="1"
+                number-of-sides="0"
+                number-of-dice="0"
+                attack-bonus="0"
+                create="39"
+                percent-success="0"
+                end-turn="true"
+                radius="0"
+                cost="10"
+                type="magic"
+                consume="true">
+              <PrerequisiteCategories />
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="displacer beast" entity-type-id="39" entity-type="monster" health="40" collision-effect="monster" level="8" armour-class="-2" attack-bonus="4" speed="18" frequency="40">
+        <Categories />
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Displace" action="bashes" range="1" number-of-sides="6" number-of-dice="1" attack-bonus="0" percent-success="95" end-turn="true" radius="0" cost="9" type="hand-to-hand">
+                <PrerequisiteCategories />
+                <Categories />
+                <Confers>
+                    <Teleport name="displaced" cost="0" action="The {0} is displaced">
+                        <Filter />
+                    </Teleport>
+                </Confers>
+            </Attack>
+            <Attack name="Bite" action="bites" range="1" number-of-sides="4" number-of-dice="2" attack-bonus="0" percent-success="0" end-turn="true" radius="0" cost="4" type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="ring of fireballs" entity-type-id="54" entity-type="item"
+        health="0" collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories>
+            <Category type="magic" />
+        </Categories>
+        <Actions>
+            <Attack name="flame" action="points at" range="3" number-of-sides="0" number-of-dice="0"
+                attack-bonus="0" create="74" percent-success="0" end-turn="true" radius="1" cost="12"
+                type="magic">
+                <PrerequisiteCategories>
+                    <Category type="intelligent"/>
+                </PrerequisiteCategories>
+            </Attack>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2">
+                <Filter />
+            </PutDown>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="wind sword" entity-type-id="59" entity-type="item" health="0"
+        collision-effect="none" level="0" armour-class="0" attack-bonus="0" speed="0" frequency="0">
+        <Categories>
+            <Category type="magic" />
+        </Categories>
+        <Actions>
+            <PutDown name="Drop" action="the {0} drops the {2}" cost="2">
+                <Filter />
+            </PutDown>
+            <Attack name="Slash" action="slashes" range="1" number-of-sides="8" number-of-dice="1"
+                attack-bonus="3" create="30" percent-success="0" end-turn="true" radius="0" cost="4"
+                type="hand-to-hand">
+                <PrerequisiteCategories>
+                    <Category type="humanoid" />
+                </PrerequisiteCategories>
+                <Categories>
+                    <Category type="magic" />
+                </Categories>
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="Whirlwind" entity-type-id="30" entity-type="phenomina" health="0"
+        collision-effect="none" level="6" armour-class="-3" attack-bonus="3" speed="15" frequency="50">
+        <Categories>
+            <Category type="elemental" />
+        </Categories>
+        <Actions>
+            <Attack name="Envelop" action="envelops" range="0" number-of-sides="6"
+                number-of-dice="1" attack-bonus="1" percent-success="40" end-turn="true"
+                radius="0" cost="1" type="hand-to-hand" default-attack="true" always-hits="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="elemental" />
+                </Categories>
+                <Confers>
+                    <Dazed cost="15" action="The {0} staggers">
+                        <Filter />
+                    </Dazed>
+                </Confers>
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="Fire" entity-type-id="74" entity-type="phenomina" health="0" collision-effect="none" level="10" armour-class="0" attack-bonus="0" speed="4" frequency="50">
+        <Categories>
+            <Category type="elemental" />
+        </Categories>
+        <Actions>
+            <Attack name="Burn" action="burns" range="0" number-of-sides="12" number-of-dice="2" attack-bonus="0" percent-success="0" end-turn="true" radius="0" cost="0"
+                type="implicit" always-hits="true" effect-group="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="elemental" />
+                </Categories>
+            </Attack>
+        </Actions>
+    </Prototype>
+
+    <Prototype name="dragon, Alderstat" entity-type-id="26" entity-type="monster"
+        health="70" collision-effect="monster"
+        level="20" armour-class="-6" attack-bonus="10" speed="20" frequency="65">
+        <Categories>
+            <Category type="elemental" />
+            <Category type="flying" />
+            <Category type="magic" />
+        </Categories>
+        <Actions>
+            <PickUp name="Pick up" action="The {0} picks up the {2}" cost="2">
+                <Filter />
+            </PickUp>
+            <Die name="dies" action="The {0} {1}" cost="0">
+                <Filter />
+            </Die>
+            <Defend name="Defend" action="The {0} defends" cost="3">
+                <Filter />
+            </Defend>
+            <EndTurn name="End turn" cost="0">
+                <Filter />
+            </EndTurn>
+            <Move cost="2" />
+            <Attack name="Bite" action="bites" range="1" number-of-sides="8" number-of-dice="2" attack-bonus="0" percent-success="0" end-turn="true" radius="0" cost="5" type="hand-to-hand" default-attack="true">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="elemental" />
+                </Categories>
+            </Attack>
+            <Attack name="Claw" action="claws" range="1" number-of-sides="6" number-of-dice="2" attack-bonus="0" percent-success="0" end-turn="true" radius="0" cost="3" type="hand-to-hand">
+                <PrerequisiteCategories />
+                <Categories />
+            </Attack>
+            <Attack name="Flame" action="flames" range="5" number-of-sides="0" number-of-dice="0" attack-bonus="0" create="74" percent-success="0" end-turn="true" radius="0" cost="13" type="magic">
+                <PrerequisiteCategories />
+                <Categories>
+                    <Category type="elemental" />
+                </Categories>
+            </Attack>
+        </Actions>
+    </Prototype>
+    <Entities>
+        <!-- exit -->
+        <Entity entity-type-id="85" x="5" y="14" side="0">
+            <Actions>
+                <Exit name="Enter" action="The {0} leaves" cost="4" exit-name="res:///rooms/start.room">
+                    <Filter />
+                </Exit>
+            </Actions>
+        </Entity>
+        <!-- dragon -->
+        <Entity entity-type-id="26" x="7" y="5" side="2" boss="true">
+            <Actions>
+                <Talk name="Talk" action="Alderstat rumbles &quot;You look like you'd make an excellent snack!&quot;" cost="0"/>
+            </Actions>
+        </Entity>
+        <!-- sword of the winds -->
+        <Entity entity-type-id="59" x="1" y="11" side="0"/>
+        <!-- scroll of flesh to stone -->
+
+        <!-- scroll of lightning -->
+        <Entity entity-type-id="55" x="12" y="8" side="0"/>
+
+        <!-- figurine of a displacer beast -->
+        <Entity entity-type-id="62" x="12" y="4" side="0"/>
+
+        <!-- shield -->
+        <Entity entity-type-id="57" x="7" y="8" side="0"/>
+
+        <!-- ring of fireballs -->
+        <Entity entity-type-id="54" x="1" y="5" side="0"/>
+
+    </Entities>
+</Room>
+

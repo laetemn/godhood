@@ -1,0 +1,71 @@
+<project name="servlet" default="redeploy" basedir=".">
+    
+    <property file="..\..\global\build\global.properties"/>
+    <property file=".\build.properties"/>
+
+    <taskdef name="deploy"   classname="org.apache.catalina.ant.DeployTask"/>
+    <taskdef name="list"     classname="org.apache.catalina.ant.ListTask"/>
+    <taskdef name="reload"   classname="org.apache.catalina.ant.ReloadTask"/>
+    <taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask"/>
+
+    <target name="init">
+        <mkdir dir="${work.classes}"/>
+        <mkdir dir="${work.dist}"/>
+    </target>
+
+    <target name="compile" depends="init,compile-dependencies">
+        <javac srcdir="${src.java}" destdir="${work.classes}" debug="${debug}">
+            <classpath>
+                <pathelement location="${game.work.classes}"/>
+                <pathelement location="${server.work.classes}"/>
+                <pathelement location="..\..\global\lib\servlet.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="compile-dependencies">
+        <ant antfile="${server.build.dir}/build.xml" dir="${server.build.dir}"
+            inheritAll="false"/>
+    </target>
+
+    <target name="dist" depends="compile">
+        <copy todir="${work.classes}">
+            <fileset dir="${server.work.classes}"/>
+        </copy>
+        <copy todir="${work.classes}">
+            <fileset dir="${game.work.classes}"/>
+        </copy>
+
+        <war warfile="${servlet.war}" webxml="../../${servlet.web.xml}">
+            <classes dir="${work.classes}"/>
+        </war>
+    </target>
+
+    <target name="redeploy" depends="dist">
+    <!--
+        <delete dir="${tomcat.webapps}"/>
+        <mkdir dir="${tomcat.webapps}"/>
+        <unwar src="${servlet.war}" dest="${tomcat.webapps}"/>
+        -->
+        <undeploy url="${manager.url}"
+            username="${manager.username}"
+            password="${manager.password}"
+            path="/${application.path}"/>
+
+        <deploy url="${manager.url}"
+            username="${manager.username}"
+            password="${manager.password}"
+            path="/${application.path}"
+            war="${servlet.war}"/>
+    </target>
+
+    <target name="deploy" depends="dist">
+
+        <deploy url="${manager.url}"
+            username="${manager.username}"
+            password="${manager.password}"
+            path="/${application.path}"
+            war="${servlet.war}"/>
+    </target>
+
+</project>
